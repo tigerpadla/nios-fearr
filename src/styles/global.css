@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* ---- Brand Theme (from brochure) ---- */
+@theme {
+  --color-brand-purple: #3B2D6B;
+  --color-brand-purple-light: #4E3E8A;
+  --color-brand-magenta: #E91E7B;
+  --color-brand-magenta-hover: #D1186D;
+  --color-brand-dark: #1A1A2E;
+  --color-brand-grey: #F5F5F5;
+  --color-brand-body: #333333;
+  --color-brand-white: #FFFFFF;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+/* ---- Base Styles ---- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: var(--color-brand-body);
+    font-family: var(--font-sans);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* ---- Accordion Animation ---- */
+[data-accordion-item] [data-accordion-content] {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+[data-accordion-item][data-open="true"] [data-accordion-content] {
+  grid-template-rows: 1fr;
+}
+
+[data-accordion-item] [data-accordion-content] > div {
+  overflow: hidden;
+}
+
+/* ---- Scroll Animation ---- */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-animate].animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Swiper Overrides ---- */
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  background: #d1d5db !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-brand-magenta) !important;
+}
+
+/* ---- Accessibility ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Careers | Níos Fearr Consulting" description="Career opportunities at Níos Fearr Consulting Ltd. Join our team of technology consultants and mentors.">
+  <section class="pt-32 pb-20 bg-brand-grey">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-brand-purple">Careers</h1>
+      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4"></div>
+
+      <div class="mt-12 text-brand-body/80 leading-relaxed">
+        <div class="bg-white rounded-2xl p-8 border border-gray-100">
+          <h2 class="text-2xl font-semibold text-brand-purple mb-4">
+            Join Our Team
+          </h2>
+          <p>
+            At Níos Fearr Consulting, we're always interested in hearing from
+            experienced technology professionals who share our passion for
+            delivering exceptional consultancy and mentoring services.
+          </p>
+          <p class="mt-4">
+            While we don't currently have open positions advertised, we welcome
+            speculative applications from talented individuals with experience in:
+          </p>
+
+          <ul class="mt-6 space-y-3">
+            {[
+              "Project & Programme Management",
+              "Business Analysis & Process Improvement",
+              "Test Management & Quality Assurance",
+              "Digital Transformation & Cloud Strategy",
+              "Data Analytics & Business Intelligence",
+              "IT Security & Governance",
+            ].map((item) => (
+              <li class="flex items-center gap-3">
+                <svg
+                  class="w-5 h-5 text-brand-magenta shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="2.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 p-6 bg-brand-purple/5 rounded-xl">
+            <p class="text-brand-purple font-medium">
+              Interested? Send your CV and a brief introduction to:
+            </p>
+            <a
+              href="mailto:info@niosfearr.ie"
+              class="text-brand-magenta font-semibold text-lg hover:underline mt-2 inline-block"
+              >info@niosfearr.ie</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

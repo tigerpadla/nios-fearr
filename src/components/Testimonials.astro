@@ -1,0 +1,93 @@
+---
+import { testimonials } from "../data/testimonials";
+---
+
+<section id="testimonials" class="py-20 sm:py-28 bg-brand-grey">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto" data-animate>
+      <span
+        class="text-brand-magenta font-semibold text-sm uppercase tracking-wider"
+        >Testimonials</span
+      >
+      <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-brand-purple">
+        What Our Clients Say
+      </h2>
+      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4 mx-auto"></div>
+    </div>
+
+    <div class="mt-12" data-animate>
+      <div class="swiper swiper-testimonials">
+        <div class="swiper-wrapper pb-12">
+          {
+            testimonials.map((t) => (
+              <div class="swiper-slide">
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+                  {/* Quote mark */}
+                  <svg
+                    class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
+                  </svg>
+
+                  {/* Quote text */}
+                  <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
+                    "{t.quote}"
+                  </blockquote>
+
+                  {/* Attribution */}
+                  <div class="mt-6 pt-6 border-t border-gray-100">
+                    <p class="font-semibold text-brand-purple">{t.role}</p>
+                    <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
+                    <p class="text-sm text-brand-magenta/70 mt-0.5">
+                      {t.location}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Pagination dots -->
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from "swiper";
+  import { Pagination, Autoplay } from "swiper/modules";
+  import "swiper/css";
+  import "swiper/css/pagination";
+
+  function initTestimonials() {
+    const el = document.querySelector(".swiper-testimonials");
+    if (!el) return;
+
+    new Swiper(".swiper-testimonials", {
+      modules: [Pagination, Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+    });
+  }
+
+  document.addEventListener("astro:page-load", initTestimonials);
+</script>

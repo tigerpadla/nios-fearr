@@ -1,0 +1,123 @@
+---
+const differentiators = [
+  {
+    title: "Over 20 Years of Proven Experience",
+    description:
+      "Since 2004, we've delivered technology consultancy and mentoring across diverse industries and geographies. Our depth of experience means we've seen — and solved — the challenges your organisation faces.",
+    points: [
+      "Engagements across financial services, healthcare, pharma, government, and more",
+      "International delivery experience from Dublin to New York to Basel",
+      "Battle-tested approaches refined through hundreds of projects",
+    ],
+    icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    title: "Tailored Solutions, Not Templates",
+    description:
+      "We don't believe in one-size-fits-all. Every engagement begins with understanding your unique context, challenges, and objectives before crafting a bespoke approach.",
+    points: [
+      "Deep-dive discovery before any recommendations",
+      "Strategies aligned to your business goals, not technology trends",
+      "Flexible engagement models that adapt as your needs evolve",
+    ],
+    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z",
+  },
+  {
+    title: "Long-Term Partnerships",
+    description:
+      "Our clients don't just return — they refer us. We build enduring relationships founded on trust, transparency, and consistent delivery that extends far beyond the initial engagement.",
+    points: [
+      "Clients spanning 5, 10, and 15+ year relationships",
+      "Repeat work built on trust and demonstrated results",
+      "Acting as an extension of your team, not an outside vendor",
+    ],
+    icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+  },
+  {
+    title: "Trusted Advisors Across Industries",
+    description:
+      "From global financial institutions to government departments, from biotech to construction — we bring cross-industry insight that enriches every engagement.",
+    points: [
+      "Worked with organisations from startups to multinationals",
+      "Government, private sector, and non-profit experience",
+      "Cross-pollination of best practices across industries",
+    ],
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
+  },
+];
+---
+
+<section id="why-us" class="py-20 sm:py-28 bg-brand-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto" data-animate>
+      <span
+        class="text-brand-magenta font-semibold text-sm uppercase tracking-wider"
+        >Why Choose Us</span
+      >
+      <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-brand-purple">
+        Built on Trust, Driven by Results
+      </h2>
+      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4 mx-auto"></div>
+    </div>
+
+    <div class="mt-16 space-y-20">
+      {
+        differentiators.map((item, i) => (
+          <div
+            data-animate
+            class:list={[
+              "flex flex-col gap-8 items-center",
+              "md:flex-row",
+              i % 2 !== 0 && "md:flex-row-reverse",
+            ]}
+          >
+            {/* Icon / Visual */}
+            <div class="flex-1 flex justify-center">
+              <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl bg-brand-purple/5 flex items-center justify-center">
+                <svg
+                  class="w-16 h-16 sm:w-20 sm:h-20 text-brand-purple/40"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d={item.icon} />
+                </svg>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div class="flex-1">
+              <h3 class="text-2xl font-bold text-brand-purple">{item.title}</h3>
+              <p class="mt-3 text-brand-body/70 leading-relaxed">
+                {item.description}
+              </p>
+              <ul class="mt-5 space-y-3">
+                {item.points.map((point) => (
+                  <li class="flex items-start gap-3">
+                    <svg
+                      class="w-5 h-5 text-brand-magenta shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span class="text-sm text-brand-body/60">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

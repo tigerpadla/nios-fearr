@@ -1,0 +1,194 @@
+---
+const navLinks = [
+  { label: "Services", href: "#services" },
+  { label: "Approach", href: "#process" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4"
+>
+  <div
+    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+  >
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 group">
+      <span
+        class="text-xl font-bold text-white group-hover:text-brand-magenta transition-colors"
+        >Níos Fearr</span
+      >
+      <span class="text-sm text-white/70 hidden sm:inline">Consulting</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-white/90 hover:text-brand-magenta transition-colors"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contact"
+        class="bg-brand-magenta text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-magenta-hover transition-colors"
+      >
+        Get in Touch
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden text-white p-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <svg
+        id="hamburger-icon"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        id="close-icon"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-brand-purple/95 backdrop-blur-md mt-2"
+  >
+    <div class="px-4 py-4 flex flex-col gap-3">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="mobile-nav-link text-white/90 hover:text-brand-magenta transition-colors py-2 text-lg"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="#contact"
+        class="mobile-nav-link bg-brand-magenta text-white px-5 py-2.5 rounded-full text-center font-semibold hover:bg-brand-magenta-hover transition-colors mt-2"
+      >
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  function initNavbar() {
+    const navbar = document.getElementById("navbar");
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+    const hamburger = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    // Frosted glass on scroll
+    function updateNavbar() {
+      if (!navbar) return;
+      if (window.scrollY > 60) {
+        navbar.classList.add(
+          "bg-white/90",
+          "backdrop-blur-md",
+          "shadow-sm",
+          "py-2",
+        );
+        navbar.classList.remove("py-4");
+        navbar
+          .querySelectorAll("a:not(.bg-brand-magenta)")
+          .forEach((a) => {
+            a.classList.remove("text-white/90", "text-white", "text-white/70");
+            a.classList.add("text-brand-body");
+          });
+        const logo = navbar.querySelector("a span:first-child");
+        if (logo) {
+          logo.classList.remove("text-white");
+          logo.classList.add("text-brand-purple");
+        }
+        btn?.classList.remove("text-white");
+        btn?.classList.add("text-brand-body");
+      } else {
+        navbar.classList.remove(
+          "bg-white/90",
+          "backdrop-blur-md",
+          "shadow-sm",
+          "py-2",
+        );
+        navbar.classList.add("py-4");
+        navbar
+          .querySelectorAll("a:not(.bg-brand-magenta)")
+          .forEach((a) => {
+            a.classList.remove("text-brand-body");
+            a.classList.add("text-white/90");
+          });
+        const logo = navbar.querySelector("a span:first-child");
+        if (logo) {
+          logo.classList.remove("text-brand-purple");
+          logo.classList.add("text-white");
+        }
+        const subtitle = navbar.querySelector("a span:last-child");
+        if (subtitle) {
+          subtitle.classList.remove("text-brand-body");
+          subtitle.classList.add("text-white/70");
+        }
+        btn?.classList.remove("text-brand-body");
+        btn?.classList.add("text-white");
+      }
+    }
+
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+    updateNavbar();
+
+    // Mobile menu toggle
+    btn?.addEventListener("click", () => {
+      const isOpen = menu?.classList.contains("hidden") === false;
+      menu?.classList.toggle("hidden");
+      hamburger?.classList.toggle("hidden");
+      closeIcon?.classList.toggle("hidden");
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // Close mobile menu on anchor click
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        menu?.classList.add("hidden");
+        hamburger?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+        btn?.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initNavbar);
+</script>

@@ -1,0 +1,62 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Níos Fearr Consulting — Technology Consultancy & Developmental Mentoring. Over 20 years igniting ambition across Ireland and beyond.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://niosfearr.ie" />
+    <meta name="theme-color" content="#3B2D6B" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-brand-white text-brand-body font-sans antialiased">
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Scroll animation observer -->
+    <script>
+      function initScrollAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("animate-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        document
+          .querySelectorAll("[data-animate]")
+          .forEach((el) => observer.observe(el));
+      }
+      document.addEventListener("astro:page-load", initScrollAnimations);
+    </script>
+  </body>
+</html>

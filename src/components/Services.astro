@@ -1,0 +1,86 @@
+---
+import { serviceCategories } from "../data/services";
+
+const iconMap: Record<string, string> = {
+  transform:
+    "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+  integration:
+    "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1",
+  analytics:
+    "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+  cloud:
+    "M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z",
+  security:
+    "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+  automation:
+    "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z",
+  guidance:
+    "M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z",
+  skills:
+    "M13 10V3L4 14h7v7l9-11h-7z",
+  hybrid:
+    "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9",
+};
+---
+
+<section id="services" class="py-20 sm:py-28 bg-brand-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    {
+      serviceCategories.map((category, catIdx) => (
+        <div class:list={[catIdx > 0 && "mt-24"]} data-animate>
+          {/* Section header */}
+          <div class="max-w-2xl">
+            <span class="text-brand-magenta font-semibold text-sm uppercase tracking-wider">
+              {category.subtitle}
+            </span>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-brand-purple">
+              {category.title}
+            </h2>
+            <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4" />
+            <p class="mt-4 text-brand-body/70 text-lg leading-relaxed">
+              {category.description}
+            </p>
+          </div>
+
+          {/* Service cards grid */}
+          <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {category.services.map((service, i) => (
+              <div
+                data-animate
+                style={`transition-delay: ${i * 80}ms`}
+                class:list={[
+                  "group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg border",
+                  i % 2 === 0
+                    ? "bg-brand-grey border-transparent"
+                    : "bg-white border-gray-100",
+                ]}
+              >
+                {/* Icon */}
+                <div class="w-12 h-12 rounded-xl bg-brand-purple/10 flex items-center justify-center mb-4 group-hover:bg-brand-magenta/10 transition-colors">
+                  <svg
+                    class="w-6 h-6 text-brand-purple group-hover:text-brand-magenta transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d={iconMap[service.icon] || iconMap.transform} />
+                  </svg>
+                </div>
+
+                <h3 class="text-lg font-semibold text-brand-purple">
+                  {service.title}
+                </h3>
+                <p class="mt-2 text-sm text-brand-body/60 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
