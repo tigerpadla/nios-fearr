@@ -24,10 +24,13 @@ import { clients } from "../data/clients";
     <div class="flex animate-marquee gap-16 items-center w-max">
       {
         clients.map((client) => (
-          <div class="flex items-center justify-center px-4 shrink-0">
-            <span class="text-brand-body/30 font-semibold text-lg whitespace-nowrap select-none">
-              {client.name}
-            </span>
+          <div class="flex items-center justify-center px-10 shrink-0 h-18">
+            <img
+              src={client.logo}
+              alt={client.name}
+              class="h-14 max-w-[180px] w-auto object-contain opacity-75
+                     transition-opacity duration-500 ease-out hover:opacity-100"
+            />
           </div>
         ))
       }
@@ -35,12 +38,15 @@ import { clients } from "../data/clients";
       {
         clients.map((client) => (
           <div
-            class="flex items-center justify-center px-4 shrink-0"
+            class="flex items-center justify-center px-10 shrink-0 h-18"
             aria-hidden="true"
           >
-            <span class="text-brand-body/30 font-semibold text-lg whitespace-nowrap select-none">
-              {client.name}
-            </span>
+            <img
+              src={client.logo}
+              alt=""
+              class="h-14 max-w-[180px] w-auto object-contain opacity-75
+                     transition-opacity duration-500 ease-out hover:opacity-100"
+            />
           </div>
         ))
       }

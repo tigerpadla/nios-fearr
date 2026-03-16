@@ -4,23 +4,14 @@ export interface Client {
 }
 
 export const clients: Client[] = [
-  { name: "Laya Healthcare", logo: "/images/clients/laya-healthcare.svg" },
-  { name: "CITCO", logo: "/images/clients/citco.svg" },
-  { name: "Permanent TSB", logo: "/images/clients/ptsb.svg" },
-  {
-    name: "Dept. of Foreign Affairs",
-    logo: "/images/clients/dept-foreign-affairs.svg",
-  },
-  { name: "AXA", logo: "/images/clients/axa.svg" },
-  {
-    name: "Dept. of Social Protection",
-    logo: "/images/clients/dept-social-protection.svg",
-  },
-  { name: "BearingPoint", logo: "/images/clients/bearingpoint.svg" },
-  { name: "AOL", logo: "/images/clients/aol.svg" },
-  { name: "SB Group", logo: "/images/clients/sb-group.svg" },
-  {
-    name: "Tech Industry Alliance",
-    logo: "/images/clients/tech-industry-alliance.svg",
-  },
+  { name: "Laya Healthcare", logo: "/images/clients/laya-healthcare-logo.png" },
+  { name: "CITCO", logo: "/images/clients/citco-logo.svg" },
+  { name: "Permanent TSB", logo: "/images/clients/ptsb-logo.png" },
+  { name: "Dept. of Foreign Affairs", logo: "/images/clients/dfa-logo.png" },
+  { name: "AXA", logo: "/images/clients/axa-logo.png" },
+  { name: "Dept. of Social Protection", logo: "/images/clients/dsp-logo.png" },
+  { name: "BearingPoint", logo: "/images/clients/bearing-point-logo.png" },
+  { name: "AOL", logo: "/images/clients/aol-logo.png" },
+  { name: "S3 Group", logo: "/images/clients/s3-group-logo.png" },
+  { name: "Skillnet Ireland", logo: "/images/clients/skillnet-logo.svg" },
 ];
