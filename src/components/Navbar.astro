@@ -15,13 +15,20 @@ const navLinks = [
   <div
     class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between"
   >
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 group">
-      <span
-        class="text-xl font-bold text-white group-hover:text-brand-magenta transition-colors"
-        >Níos Fearr</span
-      >
-      <span class="text-sm text-white/70 hidden sm:inline">Consulting</span>
+    <!-- Logo: white over hero, purple after scroll -->
+    <a href="/" class="flex items-center shrink-0">
+      <img
+        id="logo-white"
+        src="/images/brand/nios-fearr-logo-white.png"
+        alt="Níos Fearr Consulting"
+        class="h-10 sm:h-12 w-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)] transition-opacity duration-300"
+      />
+      <img
+        id="logo-purple"
+        src="/images/brand/nios-fearr-logo-purple.png"
+        alt="Níos Fearr Consulting"
+        class="h-10 sm:h-12 w-auto hidden transition-opacity duration-300"
+      />
     </a>
 
     <!-- Desktop nav -->
@@ -30,15 +37,16 @@ const navLinks = [
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="text-sm font-medium text-white/90 hover:text-brand-magenta transition-colors"
+            class="nav-link text-sm font-medium text-white/90 hover:text-brand-magenta transition-colors"
           >
             {link.label}
           </a>
         ))
       }
       <a
+        id="nav-cta"
         href="#contact"
-        class="bg-brand-magenta text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-magenta-hover transition-colors"
+        class="bg-brand-magenta text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-magenta-hover transition-all duration-300"
       >
         Get in Touch
       </a>
@@ -113,11 +121,15 @@ const navLinks = [
     const menu = document.getElementById("mobile-menu");
     const hamburger = document.getElementById("hamburger-icon");
     const closeIcon = document.getElementById("close-icon");
+    const logoWhite = document.getElementById("logo-white");
+    const logoPurple = document.getElementById("logo-purple");
+    const navCta = document.getElementById("nav-cta");
+    const hasHero = !!document.querySelector("section.bg-brand-purple");
 
     // Frosted glass on scroll
     function updateNavbar() {
       if (!navbar) return;
-      if (window.scrollY > 60) {
+      if (window.scrollY > 60 || !hasHero) {
         navbar.classList.add(
           "bg-white/90",
           "backdrop-blur-md",
@@ -125,19 +137,21 @@ const navLinks = [
           "py-2",
         );
         navbar.classList.remove("py-4");
+        // Swap to purple logo
+        logoWhite?.classList.add("hidden");
+        logoPurple?.classList.remove("hidden");
+        // Nav link colors
         navbar
-          .querySelectorAll("a:not(.bg-brand-magenta)")
+          .querySelectorAll(".nav-link")
           .forEach((a) => {
-            a.classList.remove("text-white/90", "text-white", "text-white/70");
-            a.classList.add("text-brand-body");
+            a.classList.remove("text-white/90", "text-white", "text-white/70", "hover:text-brand-magenta");
+            a.classList.add("text-brand-body", "hover:text-brand-purple");
           });
-        const logo = navbar.querySelector("a span:first-child");
-        if (logo) {
-          logo.classList.remove("text-white");
-          logo.classList.add("text-brand-purple");
-        }
         btn?.classList.remove("text-white");
         btn?.classList.add("text-brand-body");
+        // CTA: pink → purple
+        navCta?.classList.remove("bg-brand-magenta", "hover:bg-brand-magenta-hover");
+        navCta?.classList.add("bg-brand-purple", "hover:bg-brand-purple-light");
       } else {
         navbar.classList.remove(
           "bg-white/90",
@@ -146,24 +160,21 @@ const navLinks = [
           "py-2",
         );
         navbar.classList.add("py-4");
+        // Swap to white logo
+        logoWhite?.classList.remove("hidden");
+        logoPurple?.classList.add("hidden");
+        // Nav link colors
         navbar
-          .querySelectorAll("a:not(.bg-brand-magenta)")
+          .querySelectorAll(".nav-link")
           .forEach((a) => {
-            a.classList.remove("text-brand-body");
-            a.classList.add("text-white/90");
+            a.classList.remove("text-brand-body", "hover:text-brand-purple");
+            a.classList.add("text-white/90", "hover:text-brand-magenta");
           });
-        const logo = navbar.querySelector("a span:first-child");
-        if (logo) {
-          logo.classList.remove("text-brand-purple");
-          logo.classList.add("text-white");
-        }
-        const subtitle = navbar.querySelector("a span:last-child");
-        if (subtitle) {
-          subtitle.classList.remove("text-brand-body");
-          subtitle.classList.add("text-white/70");
-        }
         btn?.classList.remove("text-brand-body");
         btn?.classList.add("text-white");
+        // CTA: purple → pink
+        navCta?.classList.remove("bg-brand-purple", "hover:bg-brand-purple-light");
+        navCta?.classList.add("bg-brand-magenta", "hover:bg-brand-magenta-hover");
       }
     }
 

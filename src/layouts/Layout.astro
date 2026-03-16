@@ -38,6 +38,22 @@ const {
     </main>
     <Footer />
 
+    <!-- Back to Top -->
+    <button
+      id="back-to-top"
+      aria-label="Back to top"
+      class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-brand-purple text-white
+             shadow-lg shadow-brand-purple/20 flex items-center justify-center
+             opacity-0 translate-y-4 pointer-events-none
+             transition-all duration-300 ease-out
+             hover:bg-brand-purple-light hover:shadow-xl hover:-translate-y-0.5
+             active:translate-y-0 cursor-pointer"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+      </svg>
+    </button>
+
     <!-- Scroll animation observer -->
     <script>
       function initScrollAnimations() {
@@ -57,6 +73,40 @@ const {
           .forEach((el) => observer.observe(el));
       }
       document.addEventListener("astro:page-load", initScrollAnimations);
+
+      function initBackToTop() {
+        const btn = document.getElementById("back-to-top");
+        if (!btn) return;
+
+        const prefersReduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        let ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const show = window.scrollY > 400;
+            btn!.classList.toggle("opacity-0", !show);
+            btn!.classList.toggle("translate-y-4", !show);
+            btn!.classList.toggle("pointer-events-none", !show);
+            btn!.classList.toggle("opacity-100", show);
+            btn!.classList.toggle("translate-y-0", show);
+            btn!.classList.toggle("pointer-events-auto", show);
+            ticking = false;
+          });
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        btn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: prefersReduced ? "auto" : "smooth",
+          });
+        });
+      }
+      document.addEventListener("astro:page-load", initBackToTop);
     </script>
   </body>
 </html>
