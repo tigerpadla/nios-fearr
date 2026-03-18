@@ -2,130 +2,125 @@
 import { testimonials } from "../data/testimonials";
 ---
 
-<section id="testimonials" class="py-20 sm:py-28 bg-brand-grey">
+<section id="testimonials" class="py-20 sm:py-28 bg-brand-purple overflow-hidden">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto" data-animate>
+    <div class="text-center max-w-2xl mx-auto mb-16" data-animate>
       <span
         class="text-brand-magenta font-semibold text-sm uppercase tracking-wider"
         >Testimonials</span
       >
-      <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-brand-purple">
+      <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-white">
         What Our Clients Say
       </h2>
       <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4 mx-auto"></div>
     </div>
+  </div>
 
-    <div class="mt-12" data-animate>
-      <div class="swiper swiper-testimonials">
-        <div class="swiper-wrapper pb-12">
-          {
-            testimonials.map((t) => (
-              <div class="swiper-slide !h-auto">
-                <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full flex flex-col min-h-[320px]">
-                  {/* Quote mark */}
-                  <svg
-                    class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
-                  </svg>
+  <div class="relative">
+    <!-- Gradient fade edges -->
+    <div
+      class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-purple to-transparent z-10 pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-purple to-transparent z-10 pointer-events-none"
+    >
+    </div>
 
-                  {/* Quote text */}
-                  <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
-                    "{t.quote}"
-                  </blockquote>
+    <!-- Marquee track -->
+    <div class="testimonials-marquee flex gap-6 items-stretch w-max">
+      {
+        testimonials.map((t) => (
+          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-lg border border-white/20 flex flex-col w-[420px] shrink-0">
+            {/* Quote mark */}
+            <svg
+              class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
+            </svg>
 
-                  {/* Attribution - pinned to bottom */}
-                  <div class="mt-auto pt-6 border-t border-gray-100">
-                    <p class="font-semibold text-brand-purple">{t.role}</p>
-                    <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
-                    <p class="text-sm text-brand-magenta/70 mt-0.5">
-                      {t.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+            {/* Quote text */}
+            <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
+              "{t.quote}"
+            </blockquote>
 
-        <!-- Pagination dots -->
-        <div class="swiper-pagination"></div>
-      </div>
+            {/* Attribution - pinned to bottom */}
+            <div class="mt-auto pt-6 border-t border-gray-100">
+              <p class="font-semibold text-brand-purple">{t.role}</p>
+              <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
+              <p class="text-sm text-brand-magenta/70 mt-0.5">
+                {t.location}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+      {/* Duplicate for seamless loop */}
+      {
+        testimonials.map((t) => (
+          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-lg border border-white/20 flex flex-col w-[420px] shrink-0" aria-hidden="true">
+            {/* Quote mark */}
+            <svg
+              class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zm-14.017 0v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H0z" />
+            </svg>
+
+            {/* Quote text */}
+            <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
+              "{t.quote}"
+            </blockquote>
+
+            {/* Attribution - pinned to bottom */}
+            <div class="mt-auto pt-6 border-t border-gray-100">
+              <p class="font-semibold text-brand-purple">{t.role}</p>
+              <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
+              <p class="text-sm text-brand-magenta/70 mt-0.5">
+                {t.location}
+              </p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
 
 <style>
-  /* Ensure all slides have equal height */
-  .swiper-testimonials .swiper-wrapper {
-    align-items: stretch;
+  /* Continuous marquee animation */
+  .testimonials-marquee {
+    animation: marquee 80s linear infinite;
   }
 
-  .swiper-testimonials .swiper-slide {
-    height: auto;
-    display: flex;
+  /* Pause on hover */
+  .testimonials-marquee:hover {
+    animation-play-state: paused;
   }
 
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Card styling */
   .testimonial-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .testimonial-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(80, 67, 155, 0.08);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
   }
 
-  /* Smoother pagination dots */
-  .swiper-testimonials :global(.swiper-pagination-bullet) {
-    width: 10px;
-    height: 10px;
-    background: #50439B;
-    opacity: 0.25;
-    transition: all 0.4s ease;
-  }
-
-  .swiper-testimonials :global(.swiper-pagination-bullet-active) {
-    opacity: 1;
-    width: 28px;
-    border-radius: 5px;
-    background: #E91E7B;
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-marquee {
+      animation: none;
+    }
   }
 </style>
-
-<script>
-  import Swiper from "swiper";
-  import { Pagination, Autoplay, EffectFade } from "swiper/modules";
-  import "swiper/css";
-  import "swiper/css/pagination";
-
-  function initTestimonials() {
-    const el = document.querySelector(".swiper-testimonials");
-    if (!el) return;
-
-    new Swiper(".swiper-testimonials", {
-      modules: [Pagination, Autoplay],
-      slidesPerView: 1,
-      spaceBetween: 24,
-      loop: true,
-      speed: 1000,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      breakpoints: {
-        640: { slidesPerView: 1 },
-        768: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
-      },
-    });
-  }
-
-  document.addEventListener("astro:page-load", initTestimonials);
-</script>

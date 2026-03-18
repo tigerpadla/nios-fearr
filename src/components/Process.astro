@@ -1,81 +1,110 @@
 ---
-import { processSteps } from "../data/process-steps";
+// No data import needed - content is inline for editorial simplicity
 ---
 
-<section id="process" class="py-20 sm:py-28 bg-brand-grey">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="max-w-2xl" data-animate>
+<section id="process" class="py-16 sm:py-20 bg-white">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="max-w-2xl mx-auto text-center mb-10" data-animate>
       <span
         class="text-brand-magenta font-semibold text-sm uppercase tracking-wider"
         >How We Work</span
       >
       <h2 class="mt-2 text-3xl sm:text-4xl font-bold text-brand-purple">
-        Our Engagement Process
+        A Clear Approach
       </h2>
-      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4"></div>
-      <p class="mt-4 text-brand-body/70 text-lg leading-relaxed">
-        Every engagement follows a structured approach — from initial consultation through to ongoing optimisation — ensuring clarity and measurable outcomes at each stage.
+      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4 mx-auto"></div>
+      <p class="mt-6 text-brand-body/70 text-lg leading-relaxed">
+        Every engagement is shaped around your specific context, priorities, and constraints. Our approach follows three core phases.
       </p>
     </div>
 
-    <div class="mt-12 space-y-4" data-animate>
-      {
-        processSteps.map((step, i) => (
-          <div
-            data-accordion-item
-            data-open={i === 0 ? "true" : "false"}
-            class="rounded-2xl border border-gray-200 bg-white overflow-hidden transition-colors duration-300 data-[open=true]:border-brand-magenta/30"
-          >
-            {/* Trigger */}
-            <button
-              data-accordion-trigger
-              class="w-full flex items-center gap-4 sm:gap-6 p-5 sm:p-6 text-left cursor-pointer"
-            >
-              <span class="text-2xl sm:text-3xl font-bold text-brand-magenta/30 data-[open=true]:text-brand-magenta transition-colors shrink-0">
-                {step.number}
-              </span>
-              <span class="text-lg sm:text-xl font-semibold text-brand-purple flex-1">
-                {step.title}
-              </span>
-              {/* Plus/minus icon */}
-              <span class="relative w-6 h-6 shrink-0">
-                <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-brand-purple rounded-full -translate-y-1/2 transition-transform" />
-                <span class="absolute top-1/2 left-0 w-6 h-0.5 bg-brand-purple rounded-full -translate-y-1/2 transition-transform rotate-90 data-[open=true]:rotate-0" />
-              </span>
-            </button>
+    <!-- Process illustration -->
+    <div class="flex justify-center mb-10" data-animate>
+      <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 process-illustration">
+        <img
+          src="/images/brand/processing-amico.svg"
+          alt="Our process approach"
+          class="w-full h-full object-contain"
+        />
+      </div>
+    </div>
 
-            {/* Collapsible content */}
-            <div data-accordion-content>
-              <div>
-                <div class="px-5 sm:px-6 pb-6 pl-16 sm:pl-20">
-                  <p class="text-brand-body/70 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </div>
+    <!-- Three-phase flow with connectors -->
+    <div class="relative">
+      <!-- Connecting line (hidden on mobile, visible on desktop) -->
+      <div class="hidden md:block absolute top-6 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-magenta/20 via-brand-magenta/20 to-brand-magenta/20" style="max-width: calc(100% - 120px); margin: 0 auto; transform: translateX(0);"></div>
+
+      <div class="grid md:grid-cols-3 gap-12 lg:gap-16 relative" data-animate>
+        <!-- Phase 1: Understand -->
+        <div class="relative text-center md:text-left">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-magenta shadow-sm mb-6 relative z-10">
+            <span class="text-xl font-bold text-white">1</span>
           </div>
-        ))
-      }
+          <h3 class="text-xl font-semibold text-brand-purple mb-3">
+            Understand
+          </h3>
+          <p class="text-brand-body/70 leading-relaxed">
+            We listen, ask questions, and assess your current state — understanding your goals, challenges, and the broader context before proposing anything.
+          </p>
+        </div>
+
+        <!-- Phase 2: Shape -->
+        <div class="relative text-center md:text-left">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-magenta shadow-sm mb-6 relative z-10">
+            <span class="text-xl font-bold text-white">2</span>
+          </div>
+          <h3 class="text-xl font-semibold text-brand-purple mb-3">
+            Shape
+          </h3>
+          <p class="text-brand-body/70 leading-relaxed">
+            Together, we define a clear strategy — identifying priorities, mapping dependencies, and establishing a pragmatic roadmap tailored to your organisation.
+          </p>
+        </div>
+
+        <!-- Phase 3: Deliver -->
+        <div class="relative text-center md:text-left">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-magenta shadow-sm mb-6 relative z-10">
+            <span class="text-xl font-bold text-white">3</span>
+          </div>
+          <h3 class="text-xl font-semibold text-brand-purple mb-3">
+            Deliver
+          </h3>
+          <p class="text-brand-body/70 leading-relaxed">
+            We work with your teams to implement the plan, providing hands-on expertise, guidance, and support throughout — ensuring outcomes are achieved.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Continuous improvement note - integrated -->
+    <div class="mt-12 pt-8 border-t border-gray-100" data-animate>
+      <p class="text-brand-body/60 text-center max-w-2xl mx-auto leading-relaxed">
+        Engagements are reviewed continuously, with adjustments made as needed to reflect changing priorities and ensure sustained value.
+      </p>
     </div>
   </div>
 </section>
 
-<script>
-  function initAccordion() {
-    const items = document.querySelectorAll("[data-accordion-item]");
-    items.forEach((item) => {
-      const trigger = item.querySelector("[data-accordion-trigger]");
-      trigger?.addEventListener("click", () => {
-        const isOpen = item.getAttribute("data-open") === "true";
-        // Close all
-        items.forEach((i) => i.setAttribute("data-open", "false"));
-        // Toggle current
-        if (!isOpen) {
-          item.setAttribute("data-open", "true");
-        }
-      });
-    });
+<style>
+  /* Add subtle pink accent to process illustration */
+  .process-illustration {
+    position: relative;
   }
-  document.addEventListener("astro:page-load", initAccordion);
-</script>
+
+  .process-illustration::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(233, 30, 123, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+
+  .process-illustration img {
+    filter: saturate(1.1) contrast(1.05);
+  }
+</style>
