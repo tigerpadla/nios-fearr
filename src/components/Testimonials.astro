@@ -20,8 +20,8 @@ import { testimonials } from "../data/testimonials";
         <div class="swiper-wrapper pb-12">
           {
             testimonials.map((t) => (
-              <div class="swiper-slide">
-                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full flex flex-col">
+              <div class="swiper-slide !h-auto">
+                <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm border border-gray-100 h-full flex flex-col min-h-[320px]">
                   {/* Quote mark */}
                   <svg
                     class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
@@ -36,8 +36,8 @@ import { testimonials } from "../data/testimonials";
                     "{t.quote}"
                   </blockquote>
 
-                  {/* Attribution */}
-                  <div class="mt-6 pt-6 border-t border-gray-100">
+                  {/* Attribution - pinned to bottom */}
+                  <div class="mt-auto pt-6 border-t border-gray-100">
                     <p class="font-semibold text-brand-purple">{t.role}</p>
                     <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
                     <p class="text-sm text-brand-magenta/70 mt-0.5">
@@ -57,9 +57,46 @@ import { testimonials } from "../data/testimonials";
   </div>
 </section>
 
+<style>
+  /* Ensure all slides have equal height */
+  .swiper-testimonials .swiper-wrapper {
+    align-items: stretch;
+  }
+
+  .swiper-testimonials .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+
+  .testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(80, 67, 155, 0.08);
+  }
+
+  /* Smoother pagination dots */
+  .swiper-testimonials :global(.swiper-pagination-bullet) {
+    width: 10px;
+    height: 10px;
+    background: #50439B;
+    opacity: 0.25;
+    transition: all 0.4s ease;
+  }
+
+  .swiper-testimonials :global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+    width: 28px;
+    border-radius: 5px;
+    background: #E91E7B;
+  }
+</style>
+
 <script>
   import Swiper from "swiper";
-  import { Pagination, Autoplay } from "swiper/modules";
+  import { Pagination, Autoplay, EffectFade } from "swiper/modules";
   import "swiper/css";
   import "swiper/css/pagination";
 
@@ -72,6 +109,7 @@ import { testimonials } from "../data/testimonials";
       slidesPerView: 1,
       spaceBetween: 24,
       loop: true,
+      speed: 1000,
       autoplay: {
         delay: 5000,
         disableOnInteraction: false,

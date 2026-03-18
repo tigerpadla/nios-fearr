@@ -1,0 +1,354 @@
+---
+// Technology Consultancy & Advisory section
+// Interactive framework visualization with connected pillars
+
+const pillars = [
+  {
+    id: "manage",
+    name: "Manage",
+    tagline: "Deliver with confidence",
+    description: "Lead teams and programmes to successful outcomes. With deep experience in project delivery, IT leadership, and programme management, we bring the calm clarity needed to navigate complexity.",
+    capabilities: ["Project Management", "Programme Management", "IT Team Management", "Application Support"],
+    iconPath: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+  },
+  {
+    id: "define",
+    name: "Define",
+    tagline: "Clarify the vision",
+    description: "Shape strategy and requirements that align technology with business goals. We translate executive ambitions into clear, actionable roadmaps.",
+    capabilities: ["Strategic Consulting", "Business Process Analysis", "Product Management"],
+    iconPath: "M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18",
+  },
+  {
+    id: "ideate",
+    name: "Ideate",
+    tagline: "Drive transformation",
+    description: "Turn ideas into actionable plans with technical depth and creative thinking. We help organisations reimagine what's possible.",
+    capabilities: ["Transformation Leadership", "Technical Consulting", "Data Analysis"],
+    iconPath: "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z",
+  },
+  {
+    id: "automate",
+    name: "Automate",
+    tagline: "Scale intelligently",
+    description: "Harness AI, RPA, and intelligent systems to streamline operations. We identify and implement automation that delivers real efficiency gains.",
+    capabilities: ["Solution Analysis", "AI & RPA Strategy", "Intelligent Automation"],
+    iconPath: "M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5",
+  },
+  {
+    id: "validate",
+    name: "Validate",
+    tagline: "Ensure quality",
+    description: "Deliver confidence through rigorous testing and quality assurance at every stage. We ensure solutions work reliably before they go live.",
+    capabilities: ["Test Management", "Test Leadership", "Manual & Automation Testing"],
+    iconPath: "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z",
+  },
+];
+---
+
+<section id="services" class="py-20 sm:py-28 bg-white overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Section intro -->
+    <div class="text-center max-w-3xl mx-auto" data-animate>
+      <span class="text-brand-magenta font-semibold text-sm uppercase tracking-wider">
+        Our Framework
+      </span>
+      <h2 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-purple leading-tight">
+        Technology Consultancy & Advisory
+      </h2>
+      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-6 mx-auto"></div>
+      <p class="mt-6 text-brand-body/70 text-lg sm:text-xl leading-relaxed">
+        We work with executive-level stakeholders and their teams to identify and deliver on technology ambitions — structured around five core pillars.
+      </p>
+    </div>
+
+    <!-- Framework Visualization -->
+    <div class="mt-16 lg:mt-20" data-animate id="framework-container">
+
+      <!-- Desktop: Horizontal connected pillars -->
+      <div class="hidden lg:block">
+        <!-- Pillar selector row with connecting line -->
+        <div class="relative">
+          <!-- Connecting line behind pillars -->
+          <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-purple/10 via-brand-purple/20 to-brand-purple/10 -translate-y-1/2"></div>
+
+          <!-- Progress line (animated) -->
+          <div id="progress-line" class="absolute top-1/2 left-0 h-0.5 bg-brand-magenta -translate-y-1/2 transition-all duration-500 ease-out" style="width: 0%"></div>
+
+          <!-- Pillar buttons -->
+          <div class="relative flex justify-between">
+            {pillars.map((pillar, index) => (
+              <button
+                data-pillar-btn={pillar.id}
+                data-index={index}
+                class="group flex flex-col items-center cursor-pointer focus:outline-none"
+              >
+                <!-- Node circle -->
+                <div class="relative">
+                  <div class="pillar-node w-16 h-16 rounded-full bg-white border-2 border-brand-purple/20 flex items-center justify-center transition-all duration-300 group-hover:border-brand-magenta group-hover:shadow-lg" data-node>
+                    <svg class="pillar-icon w-7 h-7 text-brand-purple transition-colors duration-300 group-hover:text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" data-icon>
+                      <path stroke-linecap="round" stroke-linejoin="round" d={pillar.iconPath} />
+                    </svg>
+                  </div>
+                  <!-- Pulse ring on active -->
+                  <div class="pillar-pulse absolute inset-0 rounded-full border-2 border-brand-magenta opacity-0 scale-100" data-pulse></div>
+                </div>
+
+                <!-- Label -->
+                <span class="pillar-label mt-3 text-sm font-bold text-brand-purple/60 uppercase tracking-wider transition-colors duration-300 group-hover:text-brand-purple" data-label>
+                  {pillar.name}
+                </span>
+                <span class="pillar-tagline mt-1 text-xs text-brand-body/40 transition-colors duration-300 group-hover:text-brand-body/60" data-tagline>
+                  {pillar.tagline}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="mt-12 relative min-h-[280px]">
+          {pillars.map((pillar, index) => (
+            <div
+              data-panel={pillar.id}
+              class="pillar-panel absolute inset-0 opacity-0 translate-y-4 pointer-events-none transition-all duration-400 ease-out"
+            >
+              <div class="bg-brand-grey rounded-3xl p-8 lg:p-10">
+                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                  <!-- Left: description -->
+                  <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-4">
+                      <span class="w-8 h-8 rounded-full bg-brand-magenta text-white text-sm font-bold flex items-center justify-center">
+                        {index + 1}
+                      </span>
+                      <h3 class="text-2xl font-bold text-brand-purple">{pillar.name}</h3>
+                    </div>
+                    <p class="text-brand-body/70 text-lg leading-relaxed">
+                      {pillar.description}
+                    </p>
+                  </div>
+
+                  <!-- Right: capabilities -->
+                  <div class="lg:w-80 shrink-0">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-brand-purple/40 mb-4">Capabilities</h4>
+                    <ul class="space-y-3">
+                      {pillar.capabilities.map((cap) => (
+                        <li class="flex items-center gap-3 text-brand-body/80">
+                          <svg class="w-5 h-5 text-brand-magenta shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{cap}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile/Tablet: Vertical connected flow -->
+      <div class="lg:hidden">
+        <div class="relative pl-8 sm:pl-12">
+          <!-- Vertical connecting line -->
+          <div class="absolute left-3 sm:left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-purple/20 via-brand-magenta/30 to-brand-purple/20"></div>
+
+          <!-- Pillars -->
+          <div class="space-y-6">
+            {pillars.map((pillar, index) => (
+              <div class="relative">
+                <!-- Node on line -->
+                <div class="absolute -left-8 sm:-left-12 top-0 w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-brand-magenta flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-lg">
+                  {index + 1}
+                </div>
+
+                <!-- Content card -->
+                <div class="bg-brand-grey rounded-2xl p-5 sm:p-6">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-brand-purple/10 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d={pillar.iconPath} />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-bold text-brand-purple">{pillar.name}</h3>
+                      <p class="text-xs text-brand-magenta font-medium uppercase tracking-wide">{pillar.tagline}</p>
+                    </div>
+                  </div>
+                  <p class="text-sm text-brand-body/60 leading-relaxed mb-4">
+                    {pillar.description}
+                  </p>
+                  <div class="flex flex-wrap gap-2">
+                    {pillar.capabilities.map((cap) => (
+                      <span class="text-xs text-brand-body/70 px-3 py-1 bg-white rounded-full">
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 lg:mt-16 text-center" data-animate>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 bg-brand-purple text-white px-8 py-3.5 rounded-full font-semibold transition-all duration-200 hover:bg-brand-purple-light hover:shadow-lg hover:-translate-y-0.5"
+      >
+        Discuss Your Requirements
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    75%, 100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .pillar-node.active {
+    border-color: #E91E7B;
+    background-color: #E91E7B;
+    box-shadow: 0 0 20px rgba(233, 30, 123, 0.3);
+  }
+
+  .pillar-node.active .pillar-icon,
+  .pillar-icon.active {
+    color: white;
+  }
+
+  .pillar-pulse.active {
+    animation: ping-slow 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .pillar-label.active {
+    color: #E91E7B;
+  }
+
+  .pillar-tagline.active {
+    color: rgba(51, 51, 51, 0.7);
+  }
+
+  .pillar-panel.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+</style>
+
+<script>
+  function initFramework() {
+    const container = document.getElementById('framework-container');
+    if (!container) return;
+
+    const buttons = container.querySelectorAll('[data-pillar-btn]');
+    const panels = container.querySelectorAll('[data-panel]');
+    const progressLine = document.getElementById('progress-line');
+
+    let currentIndex = 0;
+    let autoplayInterval: ReturnType<typeof setInterval> | null = null;
+
+    function setActive(index: number) {
+      currentIndex = index;
+      const pillars = ['manage', 'define', 'ideate', 'automate', 'validate'];
+      const activeId = pillars[index];
+
+      // Update buttons
+      buttons.forEach((btn, i) => {
+        const isActive = i === index;
+        const node = btn.querySelector('.pillar-node');
+        const icon = btn.querySelector('.pillar-icon');
+        const label = btn.querySelector('.pillar-label');
+        const tagline = btn.querySelector('.pillar-tagline');
+        const pulse = btn.querySelector('.pillar-pulse');
+
+        if (isActive) {
+          node?.classList.add('active');
+          icon?.classList.add('active');
+          label?.classList.add('active');
+          tagline?.classList.add('active');
+          pulse?.classList.add('active');
+        } else {
+          node?.classList.remove('active');
+          icon?.classList.remove('active');
+          label?.classList.remove('active');
+          tagline?.classList.remove('active');
+          pulse?.classList.remove('active');
+        }
+      });
+
+      // Update panels
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute('data-panel') === activeId;
+        if (isActive) {
+          panel.classList.add('active');
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+
+      // Update progress line (0%, 25%, 50%, 75%, 100%)
+      if (progressLine) {
+        const percentages = [0, 25, 50, 75, 100];
+        progressLine.style.width = percentages[index] + '%';
+      }
+    }
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        const nextIndex = (currentIndex + 1) % 5;
+        setActive(nextIndex);
+      }, 5000);
+    }
+
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+      }
+    }
+
+    // Click handlers
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index') || '0');
+        setActive(index);
+        stopAutoplay();
+        // Restart autoplay after 10s of inactivity
+        setTimeout(startAutoplay, 10000);
+      });
+    });
+
+    // Initialize first pillar
+    setActive(0);
+
+    // Start autoplay
+    startAutoplay();
+
+    // Pause on hover
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+  }
+
+  document.addEventListener('astro:page-load', initFramework);
+</script>

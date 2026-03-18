@@ -1,0 +1,141 @@
+---
+// Developmental Mentoring section
+// Editorial/image-led layout with WHO/WHAT/HOW structure from brochure
+---
+
+<section class="py-20 sm:py-28 bg-brand-purple overflow-hidden">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- Hero intro with image -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center" data-animate>
+      <!-- Content side -->
+      <div class="order-2 lg:order-1">
+        <span class="text-brand-magenta font-semibold text-sm uppercase tracking-wider">
+          Career Growth
+        </span>
+        <h2 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+          Developmental Mentoring
+        </h2>
+        <div class="w-16 h-1 bg-brand-magenta rounded-full mt-6"></div>
+
+        <blockquote class="mt-8 text-xl sm:text-2xl text-white/80 leading-relaxed font-light italic border-l-2 border-brand-magenta pl-6">
+          "I act as a trusted ally for those navigating big decisions, growing into leadership, or seeking clarity in their career direction."
+        </blockquote>
+
+        <p class="mt-8 text-white/70 text-lg leading-relaxed">
+          Developmental mentoring is a dynamic relationship built on experience, trust, and real-world perspective. My approach is supportive but challenging — focused on helping mentees develop the technical, interpersonal, and problem-solving skills that will serve them for life.
+        </p>
+
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 mt-8 bg-brand-magenta text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:shadow-[0_4px_24px_rgba(233,30,123,0.4)] hover:-translate-y-0.5"
+        >
+          Let's Talk
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Image side -->
+      <div class="order-1 lg:order-2 relative">
+        <div class="relative">
+          <!-- Decorative elements -->
+          <div class="absolute -top-4 -right-4 w-full h-full bg-brand-magenta/20 rounded-2xl"></div>
+          <div class="absolute -bottom-4 -left-4 w-full h-full bg-white/[0.05] rounded-2xl"></div>
+
+          <!-- Image container -->
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/5] sm:aspect-[3/4]">
+            <img
+              src="/images/brand/colin-keane-profile.png"
+              alt="Colin Keane - Developmental Mentor"
+              class="w-full h-full object-cover object-top"
+            />
+            <!-- Gradient overlay for text readability -->
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-purple/60 via-transparent to-transparent"></div>
+
+            <!-- Caption -->
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <p class="text-white font-semibold">Colin Keane</p>
+              <p class="text-white/70 text-sm">Founder & Principal Consultant</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHO / WHAT / HOW cards -->
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8" data-animate>
+      <!-- WHO -->
+      <div class="bg-white/[0.08] backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/[0.12] transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-magenta/20 flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+          </svg>
+        </div>
+
+        <h3 class="text-xs font-bold uppercase tracking-widest text-brand-magenta mb-4">
+          Who It's For
+        </h3>
+        <p class="text-white/80 leading-relaxed">
+          <strong class="text-white">IT professionals and emerging leaders</strong> — including recently promoted employees, career changers, and those navigating performance challenges or career transitions.
+        </p>
+      </div>
+
+      <!-- WHAT -->
+      <div class="bg-white/[0.08] backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/[0.12] transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-magenta/20 flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+          </svg>
+        </div>
+
+        <h3 class="text-xs font-bold uppercase tracking-widest text-brand-magenta mb-4">
+          What It Is
+        </h3>
+        <p class="text-white/80 leading-relaxed">
+          <strong class="text-white">A dynamic relationship</strong> between an experienced IT professional and a mentee — sharing expertise, offering guidance, and cultivating the essential skills needed to thrive.
+        </p>
+      </div>
+
+      <!-- WHY -->
+      <div class="bg-white/[0.08] backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/[0.12] transition-colors">
+        <div class="w-12 h-12 rounded-xl bg-brand-magenta/20 flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-brand-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+          </svg>
+        </div>
+
+        <h3 class="text-xs font-bold uppercase tracking-widest text-brand-magenta mb-4">
+          Why It Matters
+        </h3>
+        <p class="text-white/80 leading-relaxed">
+          <strong class="text-white">Gain actionable insights and constructive feedback</strong> — navigate challenges with confidence, build resilience, and shape a successful career in an evolving tech world.
+        </p>
+      </div>
+    </div>
+
+    <!-- Focus areas -->
+    <div class="mt-16" data-animate>
+      <h3 class="text-center text-xs font-bold uppercase tracking-widest text-white/40 mb-8">
+        Areas of Focus
+      </h3>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        {[
+          "Career Direction",
+          "Leadership Growth",
+          "Building Confidence",
+          "Technical Skills",
+          "Interpersonal Skills",
+          "Problem Solving",
+          "Career Transitions",
+          "Navigating Change",
+        ].map((area) => (
+          <span class="px-4 py-2 rounded-full bg-white/[0.08] text-white/70 text-sm border border-white/10 hover:bg-white/[0.12] hover:text-white transition-colors cursor-default">
+            {area}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
