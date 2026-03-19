@@ -1,10 +1,10 @@
 ---
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Approach", href: "#process" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Services", href: "/#services" },
+  { label: "Mentoring", href: "/#mentoring" },
+  { label: "Approach", href: "/#process" },
+  { label: "Why Us", href: "/#why-us" },
+  { label: "Testimonials", href: "/#testimonials" },
 ];
 
 const legalLinks = [
@@ -14,83 +14,61 @@ const legalLinks = [
 ---
 
 <footer class="bg-brand-dark text-white">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <!-- Brand -->
-      <div>
-        <a href="/" class="inline-block">
-          <img
-            src="/images/brand/nios-fearr-logo-white.png"
-            alt="Níos Fearr Consulting"
-            class="h-10 w-auto"
-          />
-        </a>
-        <p class="text-white/50 text-sm mt-4 max-w-xs leading-relaxed">
-          Technology Consultancy & Developmental Mentoring. Over 20 years
-          igniting ambition across Ireland and beyond.
-        </p>
-      </div>
-
-      <!-- Navigation -->
-      <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
-          Navigation
-        </h3>
-        <ul class="space-y-2">
-          {
-            navLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-white/70 hover:text-brand-magenta transition-colors text-sm"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Legal & Contact -->
-      <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
-          Company
-        </h3>
-        <ul class="space-y-2">
-          {
-            legalLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-white/70 hover:text-brand-magenta transition-colors text-sm"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-          <li>
-            <a
-              href="mailto:ckeane@niosfearr.ie"
-              class="text-white/70 hover:text-brand-magenta transition-colors text-sm"
-            >
-              ckeane@niosfearr.ie
-            </a>
-          </li>
-        </ul>
-      </div>
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+    <!-- Top section: Logo prominent -->
+    <div class="flex flex-col items-center text-center mb-16">
+      <a href="/" class="inline-block mb-6">
+        <img
+          src="/images/brand/nios-fearr-logo-white.png"
+          alt="Níos Fearr Consulting"
+          class="h-16 sm:h-20 w-auto"
+        />
+      </a>
+      <p class="text-white/60 text-base max-w-md leading-relaxed">
+        Technology Consultancy & Developmental Mentoring.<br class="hidden sm:block" />
+        Over 20 years igniting ambition across Ireland and beyond.
+      </p>
     </div>
 
-    <!-- Divider + Copyright -->
-    <div class="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p class="text-white/40 text-sm">
-        &copy; 2004–{new Date().getFullYear()} Níos Fearr Consulting Ltd. All rights
-        reserved.
-      </p>
-      <p class="text-white/30 text-xs">
-        "Níos Fearr" — Irish for "Better"
-      </p>
+    <!-- Navigation row -->
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-12">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-white/70 hover:text-brand-magenta transition-colors text-sm font-medium"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-white/10 pt-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-white/40 text-sm">
+          &copy; 2004–{new Date().getFullYear()} Níos Fearr Consulting Ltd.
+        </p>
+        <div class="flex items-center gap-6">
+          {
+            legalLinks.map((link) => (
+              <a
+                href={link.href}
+                class="text-white/40 hover:text-white/70 transition-colors text-sm"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+          <a
+            href="mailto:ckeane@niosfearr.ie"
+            class="text-white/40 hover:text-brand-magenta transition-colors text-sm"
+          >
+            ckeane@niosfearr.ie
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

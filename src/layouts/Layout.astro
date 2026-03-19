@@ -46,17 +46,29 @@ const {
     <button
       id="back-to-top"
       aria-label="Back to top"
-      class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-brand-purple text-white
-             shadow-lg shadow-brand-purple/20 flex items-center justify-center
+      data-theme="light"
+      class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full
+             bg-brand-purple text-white shadow-lg shadow-brand-purple/20
+             flex items-center justify-center
              opacity-0 translate-y-4 pointer-events-none
              transition-all duration-300 ease-out
-             hover:bg-brand-purple-light hover:shadow-xl hover:-translate-y-0.5
+             hover:shadow-xl hover:-translate-y-0.5
              active:translate-y-0 cursor-pointer"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
       </svg>
     </button>
+
+    <style>
+      /* Back-to-top button adaptive hover states */
+      #back-to-top[data-theme="light"]:hover {
+        background-color: var(--color-brand-purple-light);
+      }
+      #back-to-top[data-theme="dark"]:hover {
+        background-color: #f3f4f6;
+      }
+    </style>
 
     <!-- Scroll animation observer -->
     <script>
@@ -86,6 +98,75 @@ const {
           "(prefers-reduced-motion: reduce)",
         ).matches;
 
+        // Dark section selectors (purple or dark backgrounds)
+        const darkSelectors = '.bg-brand-purple, .bg-brand-dark, #hero, #mentoring, #testimonials, footer';
+
+        // State management with hysteresis to prevent flickering
+        let currentTheme: 'light' | 'dark' = 'light';
+        const HYSTERESIS_BUFFER = 40; // px buffer zone at section boundaries
+
+        function checkDarkSection(): { isDark: boolean; confidence: 'solid' | 'boundary' } {
+          const btnRect = btn!.getBoundingClientRect();
+          const btnCenterY = btnRect.top + btnRect.height / 2;
+          const btnCenterX = btnRect.left + btnRect.width / 2;
+
+          const darkSections = document.querySelectorAll(darkSelectors);
+
+          for (const section of darkSections) {
+            const rect = section.getBoundingClientRect();
+
+            // Check if button center is within this section
+            if (btnCenterY >= rect.top && btnCenterY <= rect.bottom &&
+                btnCenterX >= rect.left && btnCenterX <= rect.right) {
+
+              // Check if we're solidly inside or near a boundary
+              const distFromTop = btnCenterY - rect.top;
+              const distFromBottom = rect.bottom - btnCenterY;
+              const minDist = Math.min(distFromTop, distFromBottom);
+
+              if (minDist > HYSTERESIS_BUFFER) {
+                return { isDark: true, confidence: 'solid' };
+              } else {
+                return { isDark: true, confidence: 'boundary' };
+              }
+            }
+          }
+
+          // Check if we're near but outside a dark section (boundary zone)
+          for (const section of darkSections) {
+            const rect = section.getBoundingClientRect();
+
+            if (btnCenterX >= rect.left && btnCenterX <= rect.right) {
+              const distFromTop = Math.abs(btnCenterY - rect.top);
+              const distFromBottom = Math.abs(btnCenterY - rect.bottom);
+
+              if (distFromTop < HYSTERESIS_BUFFER || distFromBottom < HYSTERESIS_BUFFER) {
+                return { isDark: false, confidence: 'boundary' };
+              }
+            }
+          }
+
+          return { isDark: false, confidence: 'solid' };
+        }
+
+        function updateButtonStyle(theme: 'light' | 'dark') {
+          if (theme === currentTheme) return; // No change needed
+
+          currentTheme = theme;
+
+          if (theme === 'dark') {
+            // White button with purple icon for dark backgrounds
+            btn!.dataset.theme = 'dark';
+            btn!.classList.remove('bg-brand-purple', 'text-white', 'shadow-brand-purple/20');
+            btn!.classList.add('bg-white', 'text-brand-purple', 'shadow-black/10');
+          } else {
+            // Purple button with white icon for light backgrounds
+            btn!.dataset.theme = 'light';
+            btn!.classList.remove('bg-white', 'text-brand-purple', 'shadow-black/10');
+            btn!.classList.add('bg-brand-purple', 'text-white', 'shadow-brand-purple/20');
+          }
+        }
+
         let ticking = false;
         function onScroll() {
           if (ticking) return;
@@ -98,10 +179,25 @@ const {
             btn!.classList.toggle("opacity-100", show);
             btn!.classList.toggle("translate-y-0", show);
             btn!.classList.toggle("pointer-events-auto", show);
+
+            // Update style based on background with hysteresis
+            if (show) {
+              const { isDark, confidence } = checkDarkSection();
+
+              // Only switch theme if we're solidly in a section
+              // When at boundary, keep current theme (hysteresis)
+              if (confidence === 'solid') {
+                updateButtonStyle(isDark ? 'dark' : 'light');
+              }
+            }
+
             ticking = false;
           });
         }
         window.addEventListener("scroll", onScroll, { passive: true });
+
+        // Initialize button style
+        currentTheme = 'light';
 
         btn.addEventListener("click", () => {
           window.scrollTo({

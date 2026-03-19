@@ -1,72 +1,320 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const sections = [
+  { id: "terms", label: "Terms of Use", desc: "Website usage terms" },
+  { id: "privacy", label: "Privacy Statement", desc: "Data handling practices" },
+  { id: "csr", label: "CSR Policy", desc: "Our responsibilities" },
+];
 ---
 
-<Layout title="Legal | Níos Fearr Consulting" description="Privacy policy, terms and conditions, and cookie notice for Níos Fearr Consulting Ltd.">
-  <section class="pt-32 pb-20 bg-brand-grey">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold text-brand-purple">Legal</h1>
-      <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4"></div>
+<Layout title="Legal | Níos Fearr Consulting" description="Terms of use, privacy statement, and legal information for Níos Fearr Consulting Ltd.">
+  <!-- Hero -->
+  <section class="pt-32 pb-12 bg-brand-grey">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl font-bold text-brand-purple">Legal</h1>
+        <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4"></div>
+        <p class="mt-6 text-brand-body text-lg leading-relaxed">
+          This page outlines the terms governing your use of our website, how we handle your personal data, and our commitment to corporate responsibility. Níos Fearr Consulting Ltd. is registered in Ireland (No. 390765).
+        </p>
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-12 space-y-12 text-brand-body/80 leading-relaxed">
-        <!-- Privacy Policy -->
-        <div>
-          <h2 class="text-2xl font-semibold text-brand-purple mb-4">Privacy Policy</h2>
-          <p>
-            Níos Fearr Consulting Ltd. is committed to protecting your privacy.
-            We collect only the information necessary to respond to your enquiries
-            and provide our services. Personal data submitted through our contact
-            form (name, email, message) is used solely for the purpose of
-            responding to your enquiry and is not shared with third parties.
-          </p>
-          <p class="mt-4">
-            We do not use tracking cookies or third-party analytics on this website.
-            Your data is processed in accordance with the General Data Protection
-            Regulation (GDPR) and the Irish Data Protection Act 2018.
-          </p>
-          <p class="mt-4">
-            To request access to, correction of, or deletion of your personal data,
-            please contact us at
-            <a href="mailto:ckeane@niosfearr.ie" class="text-brand-magenta hover:underline">ckeane@niosfearr.ie</a>.
-          </p>
-        </div>
+  <!-- Main content with sidebar -->
+  <section class="pb-24 bg-brand-grey">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-[240px_1fr] lg:gap-16">
 
-        <!-- Terms -->
-        <div>
-          <h2 class="text-2xl font-semibold text-brand-purple mb-4">Terms of Use</h2>
-          <p>
-            The content on this website is provided for general information purposes
-            only. While we endeavour to keep the information up to date and correct,
-            we make no representations or warranties of any kind about the completeness,
-            accuracy, or reliability of the information.
-          </p>
-          <p class="mt-4">
-            All intellectual property rights in the content of this website are owned
-            by Níos Fearr Consulting Ltd. unless otherwise stated.
-          </p>
-        </div>
+        <!-- Sticky sidebar navigation -->
+        <aside class="hidden lg:block">
+          <nav class="sticky top-28" id="legal-nav">
+            <p class="text-xs font-semibold text-brand-purple uppercase tracking-wider mb-5">On this page</p>
+            <ul class="space-y-1 border-l-2 border-gray-200">
+              {sections.map((section) => (
+                <li>
+                  <a
+                    href={`#${section.id}`}
+                    data-section={section.id}
+                    class="legal-nav-link block py-2.5 pl-4 -ml-0.5 border-l-2 border-transparent text-sm text-brand-body/60 hover:text-brand-purple hover:border-brand-purple/30 transition-all"
+                  >
+                    <span class="font-medium">{section.label}</span>
+                    <span class="block text-xs text-brand-body/40 mt-0.5">{section.desc}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-10 pt-6 border-t border-gray-200">
+              <p class="text-sm text-brand-body/50 leading-relaxed">
+                Questions about our policies?
+              </p>
+              <a href="mailto:ckeane@niosfearr.ie" class="text-sm text-brand-magenta hover:underline mt-1 inline-block font-medium">ckeane@niosfearr.ie</a>
+            </div>
+          </nav>
+        </aside>
 
-        <!-- Cookie Notice -->
-        <div>
-          <h2 class="text-2xl font-semibold text-brand-purple mb-4">Cookie Notice</h2>
-          <p>
-            This website uses only essential cookies required for the website to
-            function correctly. We do not use advertising, analytics, or tracking
-            cookies. No consent banner is required as we only use strictly necessary
-            cookies.
-          </p>
-        </div>
+        <!-- Content -->
+        <div class="space-y-10">
 
-        <!-- Company Info -->
-        <div>
-          <h2 class="text-2xl font-semibold text-brand-purple mb-4">Company Information</h2>
-          <p>
-            Níos Fearr Consulting Ltd.<br />
-            Registered in Ireland<br />
-            Contact: <a href="mailto:ckeane@niosfearr.ie" class="text-brand-magenta hover:underline">ckeane@niosfearr.ie</a>
-          </p>
+          <!-- Terms of Use Section -->
+          <article id="terms" class="bg-white rounded-2xl p-8 lg:p-10 border border-gray-100 scroll-mt-24 shadow-sm">
+            <header class="mb-8 pb-6 border-b border-gray-100">
+              <h2 class="text-2xl font-bold text-brand-purple">Terms of Use</h2>
+              <p class="mt-2 text-sm text-brand-body/60">Governing your use of this website</p>
+            </header>
+
+            <div class="prose prose-zinc max-w-none text-brand-body leading-relaxed space-y-8">
+              <!-- Introduction -->
+              <div>
+                <p>
+                  This website is operated and controlled by Níos Fearr Consulting Ltd. Our business name, 'Níos Fearr Consulting', is registered in Ireland no. 390765 with registered office 15 Somerton Road, Ballinlough, Cork.
+                </p>
+                <p class="mt-3">
+                  By accessing and/or continuing to browse this website you indicate your acceptance of these Terms of Use. Should you not agree to these Terms of Use, please discontinue use of this website.
+                </p>
+              </div>
+
+              <!-- Legal Disclaimer -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Legal Disclaimer</h3>
+                <p>
+                  The material contained on this website is for general information purposes only and does not constitute technical or professional advice. Specific technical or other professional advice should be sought on any particular matter. Any and all information is subject to change without notice and is provided on an "as is" basis. Níos Fearr Consulting makes no representations, warranties or undertakings that this website will be free from defects, including, but not limited to viruses or other harmful elements. This website may contain inaccuracies or typographical errors.
+                </p>
+                <div class="mt-4 pl-4 border-l-2 border-brand-purple/20 text-sm text-brand-body/70 leading-relaxed">
+                  <p class="font-medium text-brand-purple/80 mb-2">Important Notice</p>
+                  <p>
+                    Use of this site is at your sole risk. All materials, information, products, software, programs, and services are provided "as is," with no warranties or guarantees whatsoever. Níos Fearr Consulting expressly disclaims to the fullest extent permitted by law all express, implied, statutory, and other warranties, guarantees, or representations, including, without limitation, the warranties of merchantability, fitness for a particular purpose, and non-infringement of proprietary and intellectual property rights.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Third-Party Links -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Links to Third-Party Sites</h3>
+                <p>
+                  Níos Fearr Consulting is not responsible for the content of any third-party sites linked to from this website. These links are provided for user convenience and Níos Fearr Consulting does not endorse or make any representations about them, or any information or other products or materials found there, or any results that may be obtained from using them. If you decide to access any of the third party sites linked to this site, you do this entirely at your own risk.
+                </p>
+              </div>
+
+              <!-- Copyright -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Copyright and Trademarks</h3>
+                <p>
+                  Níos Fearr Consulting owns the copyright in the content on this site. All trademarks are owned by Níos Fearr Consulting. This site and all content in this site may not be copied, reproduced, republished, uploaded, posted, transmitted, distributed, or used for the creation of derivative works without Níos Fearr Consulting's prior written consent, except that Níos Fearr Consulting grants you non-exclusive, non-transferable, limited permission to access and display the Web pages within this site, solely on your computer and for your personal, non-commercial use of this Web site.
+                </p>
+              </div>
+
+              <!-- Limitation of Liability -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Limitation of Liability</h3>
+                <div class="pl-4 border-l-2 border-brand-purple/20 text-sm text-brand-body/70 leading-relaxed">
+                  <p class="font-medium text-brand-purple/80 mb-2">Liability Exclusion</p>
+                  <p>
+                    In no event will Níos Fearr Consulting be liable to any party for any direct, indirect, incidental, special, exemplary or consequential damages of any type whatsoever related to or arising from this website or any use of this website, or of any site or resource linked to, referenced, or accessed through this website, or for the use or downloading of, or access to, any materials, information, products, or services. This exclusion and waiver of liability applies to all causes of action, whether based on contract, warranty, tort, or any other legal theories.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Governing Law -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Governing Law and Jurisdiction</h3>
+                <p>
+                  These Terms of Use are governed by Irish law and any issues surrounding these Terms of Use are subject to the jurisdiction of the Irish courts.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Privacy Statement Section -->
+          <article id="privacy" class="bg-white rounded-2xl p-8 lg:p-10 border border-gray-100 scroll-mt-24 shadow-sm">
+            <header class="mb-8 pb-6 border-b border-gray-100">
+              <h2 class="text-2xl font-bold text-brand-purple">Privacy Statement</h2>
+              <p class="mt-2 text-sm text-brand-body/60">How we collect, use, and protect your data</p>
+            </header>
+
+            <div class="prose prose-zinc max-w-none text-brand-body leading-relaxed space-y-8">
+              <!-- Introduction -->
+              <div>
+                <p>
+                  This website is operated by Níos Fearr Consulting Limited. We have created this Privacy Statement in order to demonstrate our firm commitment to privacy. This Privacy Statement sets out the basis on which any personal data we collect from you or that you provide to us, will be processed by us.
+                </p>
+                <p class="mt-3">
+                  By using this website, you signify acceptance of this Privacy Statement. If you do not agree with any aspect of the Privacy Statement, your only remedy is to discontinue use of the website. We reserve the right to modify this Privacy Statement at any time.
+                </p>
+              </div>
+
+              <!-- Personal Data -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Personal Data</h3>
+                <p>
+                  You can visit most of this website without disclosing your personally-identifiable information. However, you may choose to provide us with your personal data, for example when you contact us to request more information.
+                </p>
+                <p class="mt-3">This information will only be used by us for:</p>
+                <ul class="mt-3 ml-4 space-y-1.5 list-disc list-outside text-brand-body/80">
+                  <li>The purposes for which it was provided by you</li>
+                  <li>Verification purposes and statistical analysis</li>
+                  <li>Marketing and administration purposes</li>
+                </ul>
+                <p class="mt-3">
+                  The information provided by you is for the sole use of Níos Fearr Consulting and its affiliates and will be treated in strict confidence. It will not be shared with any third parties.
+                </p>
+              </div>
+
+              <!-- Information and Uses -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Information and Uses</h3>
+                <p>
+                  For general web-browsing no personal information is revealed to us, although certain statistical information is available to us via our internet service provider. This includes general information about visitor numbers, pages visited, and browsing patterns.
+                </p>
+                <p class="mt-3">
+                  When visiting our website we may collect information about the domain from which you access the Internet, your IP address, the date and time you access our site, and the website from which you linked to us. This information is used to improve and administer our website.
+                </p>
+              </div>
+
+              <!-- Cookies -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Cookies</h3>
+                <p>
+                  Cookies are small pieces of information placed on your computer by a website. They can be read by the website on subsequent visits. Cookies do not contain personal information from which you can be identified, unless you have signed into password protected areas.
+                </p>
+                <div class="mt-5 grid sm:grid-cols-2 gap-4">
+                  <div class="p-4 bg-brand-grey rounded-xl">
+                    <p class="font-semibold text-brand-purple text-sm">First Party Cookies</p>
+                    <p class="mt-1.5 text-sm text-brand-body/70 leading-relaxed">Controlled by Níos Fearr Consulting for site functionality and usage tracking.</p>
+                  </div>
+                  <div class="p-4 bg-brand-grey rounded-xl">
+                    <p class="font-semibold text-brand-purple text-sm">Third Party Cookies</p>
+                    <p class="mt-1.5 text-sm text-brand-body/70 leading-relaxed">May originate from service providers such as analytics or embedded media.</p>
+                  </div>
+                </div>
+                <p class="mt-4 text-sm text-brand-body/70">
+                  If you choose to disable cookies in your browser, you can still use our website, although some features may be limited.
+                </p>
+              </div>
+
+              <!-- Your Rights -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Your Access to Personal Data</h3>
+                <p>
+                  You have the right to request a copy of the information held by us about you. Upon request, we will provide details of the origin of the information, the purposes for which it has been collected, and the recipients. You also have the right to correct inaccuracies, object to the use of your data, and block specific uses.
+                </p>
+              </div>
+
+              <!-- Security -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Security</h3>
+                <p>
+                  We are committed to ensuring that your information is secure. We use appropriate physical and technical measures, including staff training, to prevent unauthorised access to your data. These security measures are reviewed regularly. However, as no data transmission over the Internet can be guaranteed as 100% secure, you transfer data at your own risk.
+                </p>
+              </div>
+
+              <!-- Third Party Links -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Links to Third Party Sites</h3>
+                <p>
+                  Our website may contain links to other sites including social media and embedded media. If you follow these links you may receive cookies from third party sites. These sites have their own privacy statements and we do not accept responsibility for them.
+                </p>
+              </div>
+
+              <!-- Governing Law -->
+              <div class="pt-6 border-t border-gray-100">
+                <h3 class="text-lg font-semibold text-brand-purple mb-3">Governing Law</h3>
+                <p>
+                  This Privacy Statement is governed by Irish law and any issues surrounding this Privacy Statement are subject to the jurisdiction of the Irish courts.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CSR Section -->
+          <article id="csr" class="bg-white rounded-2xl p-8 lg:p-10 border border-gray-100 scroll-mt-24 shadow-sm">
+            <header class="mb-8 pb-6 border-b border-gray-100">
+              <h2 class="text-2xl font-bold text-brand-purple">Corporate Social Responsibility</h2>
+              <p class="mt-2 text-sm text-brand-body/60">Our commitment to responsible business practices</p>
+            </header>
+
+            <div class="prose prose-zinc max-w-none text-brand-body leading-relaxed">
+              <p>
+                Níos Fearr Consulting's commitment to Corporate Social Responsibility is reflected in the practices and policies we have in place throughout the organization. Since our founding, the values fostered by both management and employees focus on:
+              </p>
+              <ul class="mt-5 space-y-3">
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-brand-magenta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Employee safety and satisfaction</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-brand-magenta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Being a friend to the global environment</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-brand-magenta shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Pursuing a sense of community both inside and outside the company</span>
+                </li>
+              </ul>
+              <p class="mt-6">
+                Níos Fearr Consulting recognizes that it operates in a dynamic, constantly changing world, and constantly strives to fit its business operations into this context so that it minimizes impact on the environment and seeks out new ways of engaging with local communities and charities.
+              </p>
+            </div>
+          </article>
+
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Smooth scroll for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Active nav link state */
+  .legal-nav-link.is-active {
+    color: var(--color-brand-purple);
+    border-color: var(--color-brand-magenta);
+  }
+  .legal-nav-link.is-active span:first-child {
+    color: var(--color-brand-purple);
+  }
+</style>
+
+<script>
+  function initLegalNav() {
+    const sections = document.querySelectorAll('article[id]');
+    const navLinks = document.querySelectorAll('.legal-nav-link');
+
+    if (!sections.length || !navLinks.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute('id');
+          const link = document.querySelector(`.legal-nav-link[data-section="${id}"]`);
+
+          if (entry.isIntersecting) {
+            // Remove active state from all links
+            navLinks.forEach((l) => l.classList.remove('is-active'));
+            // Add active state to current link
+            link?.classList.add('is-active');
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  document.addEventListener('astro:page-load', initLegalNav);
+</script>

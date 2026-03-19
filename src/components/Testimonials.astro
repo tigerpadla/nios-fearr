@@ -94,11 +94,16 @@ import { testimonials } from "../data/testimonials";
   /* Continuous marquee animation */
   .testimonials-marquee {
     animation: marquee 80s linear infinite;
+    cursor: grab;
+    user-select: none;
+    will-change: transform;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
   }
 
-  /* Pause on hover */
-  .testimonials-marquee:hover {
-    animation-play-state: paused;
+  .testimonials-marquee.is-dragging {
+    animation: none !important;
+    cursor: grabbing;
   }
 
   @keyframes marquee {
@@ -106,15 +111,22 @@ import { testimonials } from "../data/testimonials";
     100% { transform: translateX(-50%); }
   }
 
-  /* Card styling */
+  /* Card styling - only apply hover when not dragging */
   .testimonial-card {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .testimonial-card:hover {
+  .testimonials-marquee:not(.is-dragging) .testimonial-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Disable all card effects while dragging */
+  .testimonials-marquee.is-dragging .testimonial-card {
+    transition: none !important;
+    transform: none !important;
+    pointer-events: none;
   }
 
   /* Respect reduced motion preferences */
@@ -124,3 +136,121 @@ import { testimonials } from "../data/testimonials";
     }
   }
 </style>
+
+<script>
+  function initTestimonialsMarquee() {
+    const marquee = document.querySelector('.testimonials-marquee') as HTMLElement;
+    if (!marquee) return;
+
+    let isDragging = false;
+    let startX = 0;
+    let dragStartX = 0;
+    let totalWidth = 0;
+
+    // Calculate total width once
+    function calculateTotalWidth(): number {
+      return marquee.scrollWidth / 2;
+    }
+
+    // Get current X position from computed transform
+    function getCurrentX(): number {
+      const style = window.getComputedStyle(marquee);
+      const transform = style.transform;
+      if (transform === 'none') return 0;
+      const matrix = new DOMMatrix(transform);
+      return matrix.m41;
+    }
+
+    // Start drag
+    function handleDragStart(e: MouseEvent | TouchEvent) {
+      if (isDragging) return;
+
+      totalWidth = calculateTotalWidth();
+
+      // Get current position immediately
+      const currentX = getCurrentX();
+
+      // Set transform BEFORE adding class to prevent jump
+      marquee.style.transform = `translateX(${currentX}px)`;
+
+      // Force browser to apply the style synchronously
+      marquee.offsetHeight;
+
+      // Now safe to stop animation
+      marquee.classList.add('is-dragging');
+      isDragging = true;
+
+      // Store starting positions
+      startX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      dragStartX = currentX;
+    }
+
+    // During drag
+    function handleDragMove(e: MouseEvent | TouchEvent) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const deltaX = clientX - startX;
+      let newX = dragStartX + deltaX;
+
+      // Wrap around for infinite feel
+      while (newX > 0) {
+        newX -= totalWidth;
+      }
+      while (newX < -totalWidth) {
+        newX += totalWidth;
+      }
+
+      marquee.style.transform = `translateX(${newX}px)`;
+    }
+
+    // End drag
+    function handleDragEnd() {
+      if (!isDragging) return;
+
+      // Get final position
+      const finalX = getCurrentX();
+
+      // Normalize to valid range
+      let normalizedX = finalX % totalWidth;
+      if (normalizedX > 0) normalizedX -= totalWidth;
+
+      // Calculate animation progress (0 to 1)
+      const progress = Math.abs(normalizedX) / totalWidth;
+
+      // Set the animation delay to resume from current position
+      marquee.style.animationDelay = `-${progress * 80}s`;
+
+      // Clear inline transform and restart animation
+      marquee.style.transform = '';
+
+      // Force reflow before removing class
+      marquee.offsetHeight;
+
+      marquee.classList.remove('is-dragging');
+      isDragging = false;
+    }
+
+    // Mouse events
+    marquee.addEventListener('mousedown', handleDragStart);
+    document.addEventListener('mousemove', handleDragMove, { passive: false });
+    document.addEventListener('mouseup', handleDragEnd);
+
+    // Touch events
+    marquee.addEventListener('touchstart', handleDragStart, { passive: false });
+    document.addEventListener('touchmove', handleDragMove, { passive: false });
+    document.addEventListener('touchend', handleDragEnd);
+    document.addEventListener('touchcancel', handleDragEnd);
+
+    // Prevent native drag
+    marquee.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // Prevent context menu on long press
+    marquee.addEventListener('contextmenu', (e) => {
+      if (isDragging) e.preventDefault();
+    });
+  }
+
+  document.addEventListener('astro:page-load', initTestimonialsMarquee);
+</script>
