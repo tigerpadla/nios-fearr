@@ -90,20 +90,32 @@
     </svg>
   </div>
 
-  <!-- Brand mark — lower-right on mobile, vertically centred right on desktop -->
+  <!-- Brand mark — mobile: bottom-center watermark, desktop: vertically centred right -->
+  <!-- Mobile version -->
   <div
-    class="absolute inset-0 z-10 flex items-end sm:items-center justify-end pointer-events-none select-none"
+    class="absolute inset-0 z-10 flex sm:hidden items-end justify-center pointer-events-none select-none"
     aria-hidden="true"
   >
     <img
       src="/images/brand/nios-fearr-logo-mark-purple.png"
       alt=""
-      class="hero-mark w-[220px] sm:w-[380px] lg:w-[460px] xl:w-[520px] 2xl:w-[600px] mr-[2%] mb-[8%] sm:mb-0 sm:mr-[6%] lg:mr-[8%] opacity-0 brightness-0 invert"
+      class="hero-mark-mobile w-[280px] -mb-[15%] opacity-0 brightness-0 invert"
+    />
+  </div>
+  <!-- Desktop version -->
+  <div
+    class="absolute inset-0 z-10 hidden sm:flex items-center justify-end pointer-events-none select-none"
+    aria-hidden="true"
+  >
+    <img
+      src="/images/brand/nios-fearr-logo-mark-purple.png"
+      alt=""
+      class="hero-mark w-[380px] lg:w-[460px] xl:w-[520px] 2xl:w-[600px] mr-[6%] lg:mr-[8%] opacity-0 brightness-0 invert"
     />
   </div>
 
   <!-- Content -->
-  <div class="relative mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+  <div class="relative mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40">
     <div class="max-w-2xl lg:max-w-3xl">
       <h1
         class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] tracking-tight animate-fade-in-up"
@@ -116,7 +128,7 @@
       </h1>
 
       <p
-        class="mt-8 text-lg sm:text-xl text-white/70 leading-[1.7] max-w-lg animate-fade-in-up"
+        class="mt-6 sm:mt-8 text-base sm:text-xl text-white/70 leading-[1.75] sm:leading-[1.7] max-w-md sm:max-w-lg animate-fade-in-up"
         style="animation-delay: 0.15s;"
       >
         Strategic technology consultancy and developmental mentoring for
@@ -125,7 +137,7 @@
       </p>
 
       <div
-        class="mt-12 flex flex-wrap gap-4 animate-fade-in-up"
+        class="mt-10 sm:mt-12 flex flex-wrap gap-4 animate-fade-in-up"
         style="animation-delay: 0.3s;"
       >
         <a
@@ -163,29 +175,55 @@
 <script>
   function initHeroMark() {
     const mark = document.querySelector(".hero-mark") as HTMLElement | null;
-    if (!mark) return;
+    const markMobile = document.querySelector(".hero-mark-mobile") as HTMLElement | null;
 
-    // Soft reveal on load — slightly more present on large screens
-    const targetOpacity = window.innerWidth >= 1280 ? "0.18" : "0.12";
-    requestAnimationFrame(() => {
-      mark.style.transition =
-        "opacity 1.2s ease-out, transform 1.2s ease-out";
-      mark.style.transform = "translateY(0)";
-      mark.style.opacity = targetOpacity;
-    });
-
-    // Gentle parallax drift on scroll
-    let ticking = false;
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
+    // Desktop mark
+    if (mark) {
+      const targetOpacity = window.innerWidth >= 1280 ? "0.18" : "0.12";
       requestAnimationFrame(() => {
-        const y = window.scrollY * 0.08;
-        mark!.style.transform = `translateY(${-y}px)`;
-        ticking = false;
+        mark.style.transition = "opacity 1.2s ease-out, transform 1.2s ease-out";
+        mark.style.transform = "translateY(0)";
+        mark.style.opacity = targetOpacity;
       });
+
+      // Gentle parallax drift on scroll
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY * 0.08;
+          mark!.style.transform = `translateY(${-y}px)`;
+          ticking = false;
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
     }
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Mobile mark — very subtle watermark
+    if (markMobile) {
+      requestAnimationFrame(() => {
+        markMobile.style.transition = "opacity 1.5s ease-out, transform 1.5s ease-out";
+        markMobile.style.transform = "translateY(0)";
+        markMobile.style.opacity = "0.06";
+      });
+
+      // Subtle parallax on scroll — fades out as user scrolls
+      let tickingMobile = false;
+      function onScrollMobile() {
+        if (tickingMobile) return;
+        tickingMobile = true;
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const y = scrollY * 0.15;
+          const fadeOpacity = Math.max(0, 0.06 - scrollY * 0.0003);
+          markMobile!.style.transform = `translateY(${-y}px)`;
+          markMobile!.style.opacity = String(fadeOpacity);
+          tickingMobile = false;
+        });
+      }
+      window.addEventListener("scroll", onScrollMobile, { passive: true });
+    }
   }
 
   document.addEventListener("astro:page-load", initHeroMark);

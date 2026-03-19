@@ -6,38 +6,44 @@
 <section id="mentoring" class="py-20 sm:py-28 bg-brand-purple overflow-hidden">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <!-- Hero intro with image -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center" data-animate>
-      <!-- Content side -->
-      <div class="order-2 lg:order-1">
-        <span class="text-brand-magenta font-semibold text-sm uppercase tracking-wider">
-          Career Growth
-        </span>
-        <h2 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-          Developmental Mentoring
-        </h2>
-        <div class="w-16 h-1 bg-brand-magenta rounded-full mt-6"></div>
+    <div class="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-start lg:items-center" data-animate>
+      <!-- Content wrapper - uses contents on mobile to allow flex ordering, block on desktop for grid -->
+      <div class="contents lg:block">
+        <!-- Header section - first on mobile -->
+        <div class="order-1">
+          <span class="text-brand-magenta font-semibold text-sm uppercase tracking-wider">
+            Career Growth
+          </span>
+          <h2 class="mt-2 text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            Developmental Mentoring
+          </h2>
+          <div class="w-16 h-1 bg-brand-magenta rounded-full mt-6"></div>
+        </div>
 
-        <blockquote class="mt-8 text-xl sm:text-2xl text-white/80 leading-relaxed font-light italic border-l-2 border-brand-magenta pl-6">
-          "I act as a trusted ally for those navigating big decisions, growing into leadership, or seeking clarity in their career direction."
-        </blockquote>
+        <!-- Body section - third on mobile, continues after header on desktop -->
+        <div class="order-3">
+          <blockquote class="mt-8 text-xl sm:text-2xl text-white/80 leading-relaxed font-light italic border-l-2 border-brand-magenta pl-6">
+            "I act as a trusted ally for those navigating big decisions, growing into leadership, or seeking clarity in their career direction."
+          </blockquote>
 
-        <p class="mt-8 text-white/70 text-lg leading-relaxed">
-          Developmental mentoring is a dynamic relationship built on experience, trust, and real-world perspective. My approach is supportive but challenging — focused on helping mentees develop the technical, interpersonal, and problem-solving skills that will serve them for life.
-        </p>
+          <p class="mt-8 text-white/70 text-lg leading-relaxed">
+            Developmental mentoring is a dynamic relationship built on experience, trust, and real-world perspective. My approach is supportive but challenging — focused on helping mentees develop the technical, interpersonal, and problem-solving skills that will serve them for life.
+          </p>
 
-        <a
-          href="#contact"
-          class="inline-flex items-center gap-2 mt-8 bg-brand-magenta text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:shadow-[0_4px_24px_rgba(233,30,123,0.4)] hover:-translate-y-0.5"
-        >
-          Let's Talk
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-          </svg>
-        </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 mt-8 bg-brand-magenta text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 hover:shadow-[0_4px_24px_rgba(233,30,123,0.4)] hover:-translate-y-0.5"
+          >
+            Let's Talk
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+            </svg>
+          </a>
+        </div>
       </div>
 
-      <!-- Image side -->
-      <div class="order-1 lg:order-2 relative">
+      <!-- Image side - second on mobile, right column on desktop -->
+      <div class="order-2 lg:order-none relative self-center lg:self-auto">
         <div class="relative">
           <!-- Decorative elements -->
           <div class="absolute -top-4 -right-4 w-full h-full bg-brand-magenta/20 rounded-2xl"></div>

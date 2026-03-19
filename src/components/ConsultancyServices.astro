@@ -151,38 +151,38 @@ const pillars = [
 
       <!-- Mobile/Tablet: Vertical connected flow -->
       <div class="lg:hidden">
-        <div class="relative pl-8 sm:pl-12">
+        <div class="relative pl-10 sm:pl-12">
           <!-- Vertical connecting line -->
-          <div class="absolute left-3 sm:left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-purple/20 via-brand-magenta/30 to-brand-purple/20"></div>
+          <div class="absolute left-4 sm:left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-purple/20 via-brand-magenta/30 to-brand-purple/20"></div>
 
           <!-- Pillars -->
-          <div class="space-y-6">
+          <div class="space-y-4 sm:space-y-6">
             {pillars.map((pillar, index) => (
               <div class="relative">
                 <!-- Node on line -->
-                <div class="absolute -left-8 sm:-left-12 top-0 w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-brand-magenta flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-lg">
+                <div class="absolute -left-10 sm:-left-12 top-0 w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-brand-magenta flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-lg">
                   {index + 1}
                 </div>
 
                 <!-- Content card -->
-                <div class="bg-brand-grey rounded-2xl p-5 sm:p-6">
-                  <div class="flex items-center gap-3 mb-3">
-                    <div class="w-10 h-10 rounded-xl bg-brand-purple/10 flex items-center justify-center">
-                      <svg class="w-5 h-5 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="bg-brand-grey rounded-2xl p-4 sm:p-6">
+                  <div class="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brand-purple/10 flex items-center justify-center shrink-0">
+                      <svg class="w-4 h-4 sm:w-5 sm:h-5 text-brand-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d={pillar.iconPath} />
                       </svg>
                     </div>
                     <div>
-                      <h3 class="text-lg font-bold text-brand-purple">{pillar.name}</h3>
-                      <p class="text-xs text-brand-magenta font-medium uppercase tracking-wide">{pillar.tagline}</p>
+                      <h3 class="text-base sm:text-lg font-bold text-brand-purple leading-tight">{pillar.name}</h3>
+                      <p class="text-[10px] sm:text-xs text-brand-magenta font-medium uppercase tracking-wide">{pillar.tagline}</p>
                     </div>
                   </div>
-                  <p class="text-sm text-brand-body/60 leading-relaxed mb-4">
+                  <p class="text-[13px] sm:text-sm text-brand-body/60 leading-relaxed mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
                     {pillar.description}
                   </p>
-                  <div class="flex flex-wrap gap-2">
+                  <div class="flex flex-wrap gap-1.5 sm:gap-2">
                     {pillar.capabilities.map((cap) => (
-                      <span class="text-xs text-brand-body/70 px-3 py-1 bg-white rounded-full">
+                      <span class="text-[10px] sm:text-xs text-brand-body/70 px-2 sm:px-3 py-0.5 sm:py-1 bg-white rounded-full">
                         {cap}
                       </span>
                     ))}

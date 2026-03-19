@@ -2,9 +2,9 @@
 import { testimonials } from "../data/testimonials";
 ---
 
-<section id="testimonials" class="py-20 sm:py-28 bg-brand-purple overflow-hidden">
+<section id="testimonials" class="py-16 sm:py-28 bg-brand-purple overflow-hidden">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-16" data-animate>
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16" data-animate>
       <span
         class="text-brand-magenta font-semibold text-sm uppercase tracking-wider"
         >Testimonials</span
@@ -17,24 +17,24 @@ import { testimonials } from "../data/testimonials";
   </div>
 
   <div class="relative">
-    <!-- Gradient fade edges -->
+    <!-- Gradient fade edges - hidden on mobile, subtle on desktop -->
     <div
-      class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-purple to-transparent z-10 pointer-events-none"
+      class="testimonial-fade-left absolute left-0 top-0 bottom-0 hidden sm:block sm:w-12 lg:w-16 z-10 pointer-events-none"
     >
     </div>
     <div
-      class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-purple to-transparent z-10 pointer-events-none"
+      class="testimonial-fade-right absolute right-0 top-0 bottom-0 hidden sm:block sm:w-12 lg:w-16 z-10 pointer-events-none"
     >
     </div>
 
     <!-- Marquee track -->
-    <div class="testimonials-marquee flex gap-6 items-stretch w-max">
+    <div class="testimonials-marquee flex gap-4 sm:gap-6 items-stretch w-max px-4 sm:px-0">
       {
         testimonials.map((t) => (
-          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-lg border border-white/20 flex flex-col w-[420px] shrink-0">
+          <div class="testimonial-card bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-white/20 flex flex-col w-[calc(100vw-32px)] sm:w-[380px] lg:w-[420px] shrink-0">
             {/* Quote mark */}
             <svg
-              class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
+              class="w-8 h-8 sm:w-10 sm:h-10 text-brand-magenta/20 mb-3 sm:mb-4 shrink-0"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -42,15 +42,15 @@ import { testimonials } from "../data/testimonials";
             </svg>
 
             {/* Quote text */}
-            <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
+            <blockquote class="text-brand-body/80 leading-relaxed sm:leading-relaxed italic flex-1 text-[15px] sm:text-base">
               "{t.quote}"
             </blockquote>
 
             {/* Attribution - pinned to bottom */}
-            <div class="mt-auto pt-6 border-t border-gray-100">
-              <p class="font-semibold text-brand-purple">{t.role}</p>
-              <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
-              <p class="text-sm text-brand-magenta/70 mt-0.5">
+            <div class="mt-auto pt-4 sm:pt-6 border-t border-gray-100">
+              <p class="font-semibold text-brand-purple text-sm sm:text-base">{t.role}</p>
+              <p class="text-xs sm:text-sm text-brand-body/50 mt-0.5 sm:mt-1">{t.company}</p>
+              <p class="text-xs sm:text-sm text-brand-magenta/70 mt-0.5">
                 {t.location}
               </p>
             </div>
@@ -60,10 +60,10 @@ import { testimonials } from "../data/testimonials";
       {/* Duplicate for seamless loop */}
       {
         testimonials.map((t) => (
-          <div class="testimonial-card bg-white rounded-2xl p-8 shadow-lg border border-white/20 flex flex-col w-[420px] shrink-0" aria-hidden="true">
+          <div class="testimonial-card bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-white/20 flex flex-col w-[calc(100vw-32px)] sm:w-[380px] lg:w-[420px] shrink-0" aria-hidden="true">
             {/* Quote mark */}
             <svg
-              class="w-10 h-10 text-brand-magenta/20 mb-4 shrink-0"
+              class="w-8 h-8 sm:w-10 sm:h-10 text-brand-magenta/20 mb-3 sm:mb-4 shrink-0"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -71,15 +71,15 @@ import { testimonials } from "../data/testimonials";
             </svg>
 
             {/* Quote text */}
-            <blockquote class="text-brand-body/80 leading-relaxed italic flex-1">
+            <blockquote class="text-brand-body/80 leading-relaxed sm:leading-relaxed italic flex-1 text-[15px] sm:text-base">
               "{t.quote}"
             </blockquote>
 
             {/* Attribution - pinned to bottom */}
-            <div class="mt-auto pt-6 border-t border-gray-100">
-              <p class="font-semibold text-brand-purple">{t.role}</p>
-              <p class="text-sm text-brand-body/50 mt-1">{t.company}</p>
-              <p class="text-sm text-brand-magenta/70 mt-0.5">
+            <div class="mt-auto pt-4 sm:pt-6 border-t border-gray-100">
+              <p class="font-semibold text-brand-purple text-sm sm:text-base">{t.role}</p>
+              <p class="text-xs sm:text-sm text-brand-body/50 mt-0.5 sm:mt-1">{t.company}</p>
+              <p class="text-xs sm:text-sm text-brand-magenta/70 mt-0.5">
                 {t.location}
               </p>
             </div>
@@ -91,6 +91,25 @@ import { testimonials } from "../data/testimonials";
 </section>
 
 <style>
+  /* Soft gradient fades - tablet and desktop only */
+  .testimonial-fade-left {
+    background: linear-gradient(
+      to right,
+      var(--color-brand-purple) 0%,
+      rgba(80, 67, 155, 0.5) 40%,
+      rgba(80, 67, 155, 0) 100%
+    );
+  }
+
+  .testimonial-fade-right {
+    background: linear-gradient(
+      to left,
+      var(--color-brand-purple) 0%,
+      rgba(80, 67, 155, 0.5) 40%,
+      rgba(80, 67, 155, 0) 100%
+    );
+  }
+
   /* Continuous marquee animation */
   .testimonials-marquee {
     animation: marquee 80s linear infinite;
@@ -111,15 +130,15 @@ import { testimonials } from "../data/testimonials";
     100% { transform: translateX(-50%); }
   }
 
-  /* Card styling - only apply hover when not dragging */
+  /* Card styling - subtle hover effect, no lift */
   .testimonial-card {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 0.3s ease;
   }
 
-  .testimonials-marquee:not(.is-dragging) .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  @media (min-width: 640px) {
+    .testimonials-marquee:not(.is-dragging) .testimonial-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
   }
 
   /* Disable all card effects while dragging */

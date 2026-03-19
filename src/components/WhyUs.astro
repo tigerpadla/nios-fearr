@@ -47,7 +47,7 @@ const differentiators = [
 ];
 ---
 
-<section id="why-us" class="py-20 sm:py-28 bg-brand-white">
+<section id="why-us" class="py-16 sm:py-28 bg-brand-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto" data-animate>
       <span
@@ -60,20 +60,20 @@ const differentiators = [
       <div class="w-16 h-1 bg-brand-magenta rounded-full mt-4 mx-auto"></div>
     </div>
 
-    <div class="mt-16 space-y-20">
+    <div class="mt-12 sm:mt-16 space-y-16 sm:space-y-20">
       {
         differentiators.map((item, i) => (
           <div
             data-animate
             class:list={[
-              "flex flex-col gap-8 items-center",
+              "flex flex-col gap-6 sm:gap-8 items-center",
               "md:flex-row",
               i % 2 !== 0 && "md:flex-row-reverse",
             ]}
           >
             {/* Visual — Illustrations for all items */}
             <div class="flex-1 flex justify-center">
-              <div class="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
+              <div class="w-56 h-56 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
                 <img
                   src={item.illustration}
                   alt={item.title}
@@ -84,11 +84,11 @@ const differentiators = [
 
             {/* Content */}
             <div class="flex-1">
-              <h3 class="text-2xl font-bold text-brand-purple">{item.title}</h3>
-              <p class="mt-3 text-brand-body/70 leading-relaxed">
+              <h3 class="text-xl sm:text-2xl font-bold text-brand-purple">{item.title}</h3>
+              <p class="mt-3 text-brand-body/70 leading-relaxed text-[15px] sm:text-base">
                 {item.description}
               </p>
-              <ul class="mt-5 space-y-3">
+              <ul class="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3">
                 {item.points.map((point) => (
                   <li class="flex items-start gap-3">
                     <svg
