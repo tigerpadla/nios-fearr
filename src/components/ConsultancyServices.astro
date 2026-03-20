@@ -267,6 +267,9 @@ const pillars = [
 
     let currentIndex = 0;
     let autoplayInterval: ReturnType<typeof setInterval> | null = null;
+    let restartTimeout: ReturnType<typeof setTimeout> | null = null;
+    let isPaused = false;
+    let userInteracted = false;
 
     function setActive(index: number) {
       currentIndex = index;
@@ -315,6 +318,9 @@ const pillars = [
     }
 
     function startAutoplay() {
+      // Prevent multiple intervals from running
+      if (autoplayInterval || isPaused) return;
+
       autoplayInterval = setInterval(() => {
         const nextIndex = (currentIndex + 1) % 5;
         setActive(nextIndex);
@@ -326,28 +332,78 @@ const pillars = [
         clearInterval(autoplayInterval);
         autoplayInterval = null;
       }
+
+      // Clear any pending restart timeout
+      if (restartTimeout) {
+        clearTimeout(restartTimeout);
+        restartTimeout = null;
+      }
+    }
+
+    function scheduleRestart() {
+      // Clear any existing restart timeout
+      if (restartTimeout) {
+        clearTimeout(restartTimeout);
+        restartTimeout = null;
+      }
+
+      // Only schedule restart if not paused by hover
+      if (!isPaused) {
+        restartTimeout = setTimeout(() => {
+          restartTimeout = null;
+          userInteracted = false;
+          if (!isPaused) {
+            startAutoplay();
+          }
+        }, 10000);
+      }
+    }
+
+    function handleUserClick(index: number) {
+      userInteracted = true;
+      setActive(index);
+      stopAutoplay();
+      scheduleRestart();
+    }
+
+    function handleMouseEnter() {
+      isPaused = true;
+      stopAutoplay();
+    }
+
+    function handleMouseLeave() {
+      isPaused = false;
+
+      // If user recently clicked, respect the 10-second delay
+      if (userInteracted && restartTimeout) {
+        // Let the existing timeout handle the restart
+        return;
+      }
+
+      // Otherwise, start autoplay immediately
+      if (!autoplayInterval) {
+        startAutoplay();
+      }
     }
 
     // Click handlers
     buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
         const index = parseInt(btn.getAttribute('data-index') || '0');
-        setActive(index);
-        stopAutoplay();
-        // Restart autoplay after 10s of inactivity
-        setTimeout(startAutoplay, 10000);
+        handleUserClick(index);
       });
     });
 
-    // Initialize first pillar
-    setActive(0);
+    // Hover handlers
+    container.addEventListener('mouseenter', handleMouseEnter);
+    container.addEventListener('mouseleave', handleMouseLeave);
 
-    // Start autoplay
+    // Initialize first pillar and start autoplay
+    setActive(0);
     startAutoplay();
 
-    // Pause on hover
-    container.addEventListener('mouseenter', stopAutoplay);
-    container.addEventListener('mouseleave', startAutoplay);
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', stopAutoplay);
   }
 
   document.addEventListener('astro:page-load', initFramework);
