@@ -366,8 +366,10 @@ const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '';
 
     // Submit form to Web3Forms
     async function submitToWeb3Forms(formData) {
-      // Check if access key is configured
-      if (!WEB3FORMS_ACCESS_KEY) {
+      // Read access key from form data (more robust than relying on define:vars)
+      const accessKey = formData.get('access_key');
+
+      if (!accessKey) {
         console.warn('Web3Forms access key not configured. Set PUBLIC_WEB3FORMS_ACCESS_KEY in your environment.');
         throw new Error('Contact form is not yet configured. Please try again later.');
       }
@@ -467,8 +469,10 @@ const WEB3FORMS_ACCESS_KEY = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY || '';
 
   // Expose configuration for testing
   if (typeof window !== 'undefined') {
+    const accessKeyInput = document.querySelector('input[name="access_key"]');
+    const hasAccessKey = accessKeyInput && accessKeyInput.value && accessKeyInput.value.trim() !== '';
     window.contactFormConfig = {
-      accessKey: WEB3FORMS_ACCESS_KEY ? 'Configured' : 'Not configured',
+      accessKey: hasAccessKey ? 'Configured' : 'Not configured',
       service: 'Web3Forms'
     };
   }
