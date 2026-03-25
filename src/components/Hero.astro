@@ -58,13 +58,12 @@
       class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.1] tracking-tight animate-fade-in-up"
       style="font-family: var(--font-display);"
     >
-      Igniting Your<br class="sm:hidden" />
-      <span class="sm:hidden"> </span>
-      <span class="hero-typing-wrapper inline-block mt-1 sm:mt-2">
+      Igniting Your
+      <span class="hero-typing-wrapper block mt-1 sm:mt-2">
         <span class="hero-typing-container text-brand-magenta" aria-label="Ambition">
           <span class="hero-typing-text"></span><span class="hero-cursor">|</span>
         </span>
-        <span class="hero-underline block mx-auto w-0 h-1 bg-brand-magenta rounded-full mt-2 sm:mt-3 transition-all duration-500 ease-out"></span>
+        <span class="hero-underline block mx-auto w-0 h-1 bg-brand-magenta rounded-full mt-2 sm:mt-3 max-w-[200px] sm:max-w-[260px] lg:max-w-[320px]"></span>
       </span>
     </h1>
 
@@ -143,11 +142,13 @@
         if (charIndex === currentWord.length) {
           // Word complete
           if (isFinalWord) {
-            // Final word - hide cursor and show underline
-            if (cursorEl) cursorEl.style.display = 'none';
-            if (underlineEl) {
-              underlineEl.style.width = '100%';
-            }
+            // Final word - hide cursor and show underline after a brief pause
+            setTimeout(() => {
+              if (cursorEl) cursorEl.style.display = 'none';
+              if (underlineEl) {
+                underlineEl.style.width = '100%';
+              }
+            }, 300);
             return;
           }
           // Pause then delete
@@ -182,8 +183,7 @@
 <style>
   /* Hero typing animation — stable wrapper structure */
   .hero-typing-wrapper {
-    display: inline-block;
-    min-width: 10ch; /* Reserve space for longest word "Confidence" */
+    display: block;
     text-align: center;
   }
 
@@ -194,6 +194,11 @@
 
   .hero-typing-text {
     display: inline;
+  }
+
+  .hero-underline {
+    transition: width 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: width;
   }
 
   .hero-cursor {
