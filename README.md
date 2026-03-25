@@ -43,7 +43,6 @@ A modern, premium brochure-style consultancy website built with Astro and Tailwi
 | **Plus Jakarta Sans** | Display font for headings (modern, premium feel) |
 | **Inter** | Body font for readability |
 | **Swiper** | Testimonials carousel |
-| **Web3Forms** | Contact form submission service |
 | **Cloudflare Pages** | Hosting and deployment |
 | **GitHub** | Version control and CI/CD trigger |
 
@@ -80,7 +79,7 @@ nios-fearr/
 - `Process.astro` — "A Clear Approach" timeline
 - `WhyUs.astro` — Trust-building section with key differentiators
 - `Testimonials.astro` — Swiper-based testimonial carousel
-- `Contact.astro` — Contact form with Web3Forms integration
+- `Contact.astro` — Contact form with mailto integration
 - `Footer.astro` — Site footer with links and company info
 
 **`src/data/`** — Centralised content files:
@@ -225,12 +224,10 @@ nios-fearr/
 - Custom-designed form (not a generic embed)
 - Fields: Name, Email, Subject (optional), Message
 - Client-side validation with real-time feedback
-- Loading state with spinner during submission
-- Success and error messages clearly styled
-- Honeypot field for basic spam protection
-- Web3Forms handles email delivery
+- Opens user's default email client with pre-filled content
+- Simple mailto-based solution (no third-party services)
 
-**Implementation:** Form submits via JavaScript fetch to Web3Forms API. Access key is hardcoded in the form (see Deployment section for rationale).
+**Implementation:** Form validates input client-side, then generates a mailto: URL with the subject and body populated from form fields. User's email client opens with the message ready to send.
 
 **Responsive:** Form fields stack on mobile; button adapts to full-width.
 
@@ -326,47 +323,44 @@ Without clear section boundaries, the page would feel monotonous. I use:
 - **Elaborate animations:** Would distract from content
 - **Multiple page types:** Brochure-style works with a single scrolling homepage
 
-### Why Web3Forms over Power Automate?
+### Why mailto over third-party form services?
 
-Originally planned for Power Automate integration, but:
-- Environment variable wiring proved unreliable with Cloudflare Pages static builds
-- Web3Forms is simpler, reliable, and designed for this use case
-- Free tier is sufficient for expected volume
-- Client-side integration is straightforward and well-documented
+Originally used Web3Forms for form submission, but simplified to mailto:
+- No third-party dependencies or API keys to manage
+- No environment variables required
+- User sees exactly what will be sent (transparency)
+- Works reliably across all devices and browsers
+- Simplest possible solution for a consultancy contact form
 
 ---
 
 ## Contact Form Implementation
 
-### Why Web3Forms?
+### Why mailto?
 
-- Simple setup with no backend required
-- Works reliably with static sites
-- Free tier available (adequate for consultancy enquiry volume)
-- Handles email delivery infrastructure
+- Simplest possible solution with no dependencies
+- No API keys or third-party services to manage
+- Works reliably on all devices
+- User has full control over sending the email
+- Transparent — user sees exactly what will be sent
 
 ### How it works
 
 1. User fills out form (Name, Email, optional Subject, Message)
 2. Client-side validation runs on submit
-3. If valid, form data is POSTed to Web3Forms API
-4. Web3Forms sends email to configured recipient
-5. User sees success message; form resets
+3. If valid, a mailto: URL is generated with the form data
+4. User's default email client opens with the message pre-filled
+5. User reviews and sends the email from their own email client
 
 ### Features
 
 - **Validation:** Required fields, email format, character limits
-- **Loading state:** Button shows "Sending..." with spinner
-- **Success state:** Green confirmation message
-- **Error state:** Red error message with details
-- **Honeypot:** Hidden field to catch basic spam bots
+- **Real-time feedback:** Field errors shown on blur
+- **Clear UX:** Button says "Open Email Client" with explanatory text
 
-### Current setup
+### Destination
 
-The Web3Forms access key is **hardcoded** in the form component. This is a pragmatic decision:
-- Access keys are designed for client-side use (not secret)
-- Eliminates environment variable complexity
-- Ensures reliable deployment without configuration issues
+Emails are directed to: `ckeane@niosfearr.ie`
 
 ---
 
@@ -394,9 +388,7 @@ Local Development → Git Push → GitHub → Cloudflare Pages → Live Site
 
 ### Environment variables
 
-Currently, **no environment variables are required** for production. The Web3Forms access key is hardcoded in the codebase for simplicity and reliability.
-
-If environment variables are needed in future, they can be added in the Cloudflare Pages dashboard under Settings → Environment Variables.
+**No environment variables are required** for production. The contact form uses a simple mailto: solution with no external services.
 
 ---
 
@@ -473,7 +465,7 @@ Content and visual direction were adapted to suit the business and audience — 
 - Full homepage rebuild with all major sections
 - Responsive design across desktop, tablet, and mobile
 - Interactive consultancy framework with stable behaviour
-- Working contact form with Web3Forms integration
+- Working contact form with mailto integration
 - Legal and Careers pages
 - Mobile navigation with proper UX
 - Deployment pipeline to Cloudflare Pages
@@ -483,7 +475,7 @@ Content and visual direction were adapted to suit the business and audience — 
 
 - Astro + Tailwind for maintainability and performance
 - Brochure-style (no CMS) for simplicity
-- Web3Forms for contact form (hardcoded key for reliability)
+- Mailto-based contact form (no third-party dependencies)
 - Plus Jakarta Sans for premium typography
 - Purple/magenta palette used carefully for balance
 - Static hosting on Cloudflare Pages
@@ -491,7 +483,7 @@ Content and visual direction were adapted to suit the business and audience — 
 ### What remains before final sign-off
 
 - Review all content for accuracy and tone
-- Test form submission in production (confirm emails received)
+- Test contact form mailto flow on different devices
 - Cross-browser / device testing
 - Final visual polish pass if needed
 - SEO / meta tag review
