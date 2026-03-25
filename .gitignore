@@ -5,3 +5,6 @@ dist/
 .env.local
 .env.*.local
 .vscode/
+
+# Handover documentation (private)
+HANDOVER_GUIDE.md

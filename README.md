@@ -1,14 +1,28 @@
-# Níos Fearr Website
+<p align="center">
+  <img src="./public/images/brand/nios-fearr-logo-purple.png" alt="Níos Fearr Logo" width="320">
+</p>
 
-A modern, premium brochure-style consultancy website built with Astro and Tailwind CSS. This is a complete rebuild of the existing Níos Fearr site, designed to be visually polished, fully responsive, and easy to maintain.
+<h1 align="center">Níos Fearr Consulting Website</h1>
+
+<p align="center">
+  Production-ready source code for the official Níos Fearr Consulting web presence
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Astro-6.x-BC52EE?logo=astro&logoColor=white" alt="Astro">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Cloudflare_Pages-Deployed-F38020?logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages">
+  <img src="https://img.shields.io/badge/Responsive-Mobile_First-4CAF50" alt="Responsive">
+  <img src="https://img.shields.io/badge/Static_Site-Fast_&_Secure-2C3E50" alt="Static Site">
+</p>
 
 ---
 
-## Project Overview
+## Overview
 
-**What it is:** A professional consultancy website for Níos Fearr, an Irish technology consultancy and advisory firm based in Cork.
+This repository contains the complete source code for **Níos Fearr** — a modern, premium brochure-style consultancy website. This is a complete rebuild of the existing Níos Fearr site, designed to be visually polished, fully responsive, and easy to maintain.
 
-**Who it's for:** Executive-level stakeholders and their teams seeking technology consultancy, programme management, and developmental mentoring services.
+Built as a performance-optimized static site with Astro and Tailwind CSS, the platform delivers services, expertise, and values to executive-level stakeholders with precision and polish.
 
 **Purpose of the rebuild:**
 - Modernise the visual presentation to reflect a premium, confident brand
@@ -17,34 +31,66 @@ A modern, premium brochure-style consultancy website built with Astro and Tailwi
 - Stay true to the existing brochure content and business positioning
 - Provide a polished user experience without over-engineering
 
-**Design direction:** The site is intentionally brochure-led — it presents the company's services, values, and expertise clearly and confidently, without unnecessary complexity. The goal is to feel premium and professional while remaining lightweight and fast.
+**Live site:** [niosfearr.ie](https://niosfearr.ie)
 
 ---
 
-## Objectives of the Rebuild
+## Site Sections
 
-| Objective | Approach |
-|-----------|----------|
-| **Modernise look and feel** | Fresh typography, refined spacing, subtle animations, premium color palette |
-| **Improve responsiveness** | Mobile-first refinements, tested across breakpoints, touch-friendly interactions |
-| **Improve maintainability** | Component-based Astro architecture, centralised data files, clean CSS structure |
-| **Keep it brochure-led** | Content-focused design, no unnecessary features or admin complexity |
-| **Stay truthful to the business** | Content adapted from existing brochure and site, not invented |
-| **Improve UX and consistency** | Unified visual language, predictable interactions, clear hierarchy |
+| Section | Description |
+|---------|-------------|
+| **Homepage** | Hero, trust bar, and core value proposition |
+| **Technology Consultancy & Advisory** | Interactive 5-pillar service framework |
+| **Developmental Mentoring** | Mentoring offering and approach |
+| **A Clear Approach** | Process timeline |
+| **Why Us** | Trust signals and differentiators |
+| **Testimonials** | Client testimonials carousel |
+| **Contact** | Enquiry form and contact details |
+| **Careers** | Careers information (separate page) |
+| **Legal** | Privacy policy and terms (separate page) |
 
 ---
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **Astro 6.x** | Static site generator with component islands |
-| **Tailwind CSS 4.x** | Utility-first styling with custom theme |
-| **Plus Jakarta Sans** | Display font for headings (modern, premium feel) |
-| **Inter** | Body font for readability |
-| **Swiper** | Testimonials carousel |
-| **Cloudflare Pages** | Hosting and deployment |
-| **GitHub** | Version control and CI/CD trigger |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Astro | 6.x | Static site generator |
+| Tailwind CSS | 4.x | Utility-first styling |
+| Plus Jakarta Sans | — | Display typography |
+| Inter | — | Body typography |
+| Swiper | 12.x | Testimonials carousel |
+
+**Hosting:** Cloudflare Pages with GitHub CI/CD
+
+---
+
+## Features
+
+- **Interactive service framework** — Auto-advancing 5-pillar consultancy visualization with state management
+- **Fully responsive** — Individually optimized layouts for desktop, tablet, and mobile
+- **Client trust bar** — Infinite-scroll logo marquee with hover effects
+- **Touch-enabled carousel** — Swiper-powered testimonials with gesture support
+- **Zero-dependency contact** — Client-side mailto form with comprehensive validation
+- **Performance-focused** — Hardware-accelerated animations and transitions
+
+---
+
+## Implementation Notes
+
+Architectural decisions and engineering approach:
+
+- **Component isolation** — Each section is a self-contained Astro component with encapsulated markup, styles, and behavior. Changes remain localized without unintended side effects.
+
+- **Content decoupling** — All editable content resides in typed TypeScript modules under `src/data/`. Content updates require no component modifications, enabling non-technical maintenance.
+
+- **Responsive precision** — Layouts were individually calibrated across breakpoints with deliberate attention to spacing, typography hierarchy, and interaction affordances.
+
+- **Static optimization** — Astro generates pure HTML/CSS/JS with zero client-side framework overhead. Combined with Cloudflare's edge network, this achieves consistently fast load times.
+
+- **Pragmatic contact solution** — Following stakeholder evaluation, a mailto-based form was chosen over third-party services. This eliminates external dependencies, API management, and ongoing service costs.
+
+- **Maintenance-first structure** — Clear file organization, explicit naming conventions, and accurate documentation ensure seamless handover and future development.
 
 ---
 
@@ -54,473 +100,157 @@ A modern, premium brochure-style consultancy website built with Astro and Tailwi
 nios-fearr/
 ├── public/
 │   └── images/
-│       ├── brand/           # Logo and brand assets
-│       ├── clients/         # Client logo images
-│       └── favicon/         # Favicon files
+│       ├── brand/              # Logo and brand assets
+│       ├── clients/            # Client logos for trust bar
+│       └── favicon/            # Favicon set
+│
 ├── src/
-│   ├── components/          # Reusable Astro components
-│   ├── data/                # Centralised content data
-│   ├── layouts/             # Page layout wrapper
-│   ├── pages/               # Route pages
-│   └── styles/              # Global CSS and theme
-├── astro.config.mjs         # Astro configuration
-├── wrangler.jsonc           # Cloudflare Pages config
+│   ├── components/             # Page section components
+│   │   ├── Navbar.astro
+│   │   ├── Hero.astro
+│   │   ├── TrustBar.astro
+│   │   ├── ConsultancyServices.astro
+│   │   ├── MentoringSection.astro
+│   │   ├── Process.astro
+│   │   ├── WhyUs.astro
+│   │   ├── Testimonials.astro
+│   │   ├── Contact.astro
+│   │   └── Footer.astro
+│   │
+│   ├── data/                   # Centralised content (TypeScript)
+│   │   ├── clients.ts
+│   │   ├── testimonials.ts
+│   │   ├── services.ts
+│   │   └── process-steps.ts
+│   │
+│   ├── layouts/
+│   │   └── Layout.astro
+│   │
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── careers.astro
+│   │   └── legal.astro
+│   │
+│   └── styles/
+│       └── global.css
+│
+├── astro.config.mjs
+├── tsconfig.json
+├── wrangler.jsonc
 └── package.json
 ```
 
-### Key Directories
+---
 
-**`src/components/`** — All major page sections as standalone components:
-- `Navbar.astro` — Header with responsive mobile menu
-- `Hero.astro` — Full-width hero with animated background elements
-- `TrustBar.astro` — Client logos marquee
-- `ConsultancyServices.astro` — Interactive 5-pillar framework section
-- `MentoringSection.astro` — Developmental mentoring with accordion
-- `Process.astro` — "A Clear Approach" timeline
-- `WhyUs.astro` — Trust-building section with key differentiators
-- `Testimonials.astro` — Swiper-based testimonial carousel
-- `Contact.astro` — Contact form with mailto integration
-- `Footer.astro` — Site footer with links and company info
+## Requirements
 
-**`src/data/`** — Centralised content files:
-- `services.ts` — Service categories and descriptions
-- `testimonials.ts` — Client testimonials
-- `process-steps.ts` — Process/approach steps
-- `clients.ts` — Client logo references
-
-**`src/pages/`** — Route pages:
-- `index.astro` — Homepage (assembles all components)
-- `careers.astro` — Careers/join us page
-- `legal.astro` — Privacy policy and terms
+- **Node.js** 18 or higher
+- **npm** (included with Node.js)
 
 ---
 
-## Section-by-Section Design Decisions
-
-### Header / Navigation
-
-**Purpose:** Primary navigation and brand presence.
-
-**Design decisions:**
-- Fixed header with subtle backdrop blur for modern feel
-- Logo prominently positioned on the left
-- Desktop: horizontal nav links with clear hover states
-- Mobile: hamburger menu with full-screen overlay
-- Smooth scroll to anchor sections
-- "Contact Us" CTA button stands out with brand magenta
-
-**Responsive:** Mobile menu is touch-friendly with generous tap targets. Menu closes on link click and on outside tap.
-
----
-
-### Hero
-
-**Purpose:** Immediate brand impact and value proposition.
-
-**Design decisions:**
-- Full-width with brand purple gradient background
-- Large, confident headline using Plus Jakarta Sans (font-black weight)
-- Animated geometric shapes in background for visual interest (subtle, not distracting)
-- Clear CTA buttons with good contrast
-- Tagline reinforces the company positioning
-
-**Typography:** Headline is the largest on the page (responsive sizing from 5xl to 8xl) to establish immediate hierarchy.
-
-**Responsive:** Text scales down gracefully; buttons stack on mobile.
-
----
-
-### Client Logos / Trust Bar
-
-**Purpose:** Social proof through client recognition.
-
-**Design decisions:**
-- Marquee-style infinite scroll (CSS animation, not JS)
-- Logos displayed in grayscale for visual consistency
-- Subtle hover effect to reveal original colors
-- Duplicated content for seamless loop
-
-**Rationale:** Keeps the section lightweight while building credibility. Logos are recognisable but don't compete visually with content.
-
----
-
-### Technology Consultancy & Advisory Section
-
-**Purpose:** Present the core service framework (5 pillars: Manage, Define, Ideate, Automate, Validate).
-
-**Design decisions:**
-- Interactive pillar selector with progress line (desktop)
-- Auto-advancing every 5 seconds with pause on hover
-- Click to select manually; auto-advance resumes after 10 seconds
-- Each pillar shows detailed description and capabilities
-- Visual pulse animation on active node
-
-**Interaction stability:** Significant work went into preventing race conditions between auto-advance, manual selection, and hover pause. The final implementation uses proper state management to ensure smooth, predictable behaviour.
-
-**Responsive:** Desktop shows horizontal connected pillars; mobile shows vertical timeline layout (no interactivity needed — all content visible).
-
----
-
-### Developmental Mentoring Section
-
-**Purpose:** Highlight the mentoring offering as distinct from consultancy.
-
-**Design decisions:**
-- Purple background to differentiate from other sections
-- Accordion-style content reveal for mobile efficiency
-- Inspirational quote styled subtly (italic, muted, smaller than heading)
-- Clear visual hierarchy: section label → heading → quote → content
-
-**Responsive:** Accordion works well on all sizes; expanded states are touch-friendly.
-
----
-
-### A Clear Approach Section
-
-**Purpose:** Show the structured process clients can expect.
-
-**Design decisions:**
-- Light grey background to visually separate from adjacent sections
-- 5-step process with numbered nodes
-- Clean, scannable layout
-- Icons and brief descriptions for each step
-
-**Rationale:** Clients want to understand "how do you work?" — this answers confidently without overcomplicating.
-
----
-
-### Why Us / Trust-Building Section
-
-**Purpose:** Reinforce credibility and differentiation.
-
-**Design decisions:**
-- Key trust points presented as cards or feature blocks
-- Balanced layout (not overwhelming with text)
-- Consistent visual treatment with icons
-
-**Rationale:** Supplements the framework section with softer value propositions around experience, approach, and client focus.
-
----
-
-### Testimonials Carousel
-
-**Purpose:** Social proof through client voice.
-
-**Design decisions:**
-- Swiper-based carousel with autoplay
-- Pagination dots styled to match brand (magenta active state)
-- Draggable on touch devices
-- Quotes attributed with name and company
-
-**Responsive:** Works well on mobile; cards resize appropriately.
-
----
-
-### Contact Form
-
-**Purpose:** Primary conversion point for enquiries.
-
-**Design decisions:**
-- Custom-designed form (not a generic embed)
-- Fields: Name, Email, Subject (optional), Message
-- Client-side validation with real-time feedback
-- Opens user's default email client with pre-filled content
-- Simple mailto-based solution (no third-party services)
-
-**Implementation:** Form validates input client-side, then generates a mailto: URL with the subject and body populated from form fields. User's email client opens with the message ready to send.
-
-**Responsive:** Form fields stack on mobile; button adapts to full-width.
-
----
-
-### Footer
-
-**Purpose:** Secondary navigation and company information.
-
-**Design decisions:**
-- Dark background (brand purple) for visual closure
-- Quick links to main sections
-- Contact information and address
-- Copyright notice
-
----
-
-### Legal Page
-
-**Purpose:** Privacy policy and terms (required for business compliance).
-
-**Design decisions:**
-- Clean, readable typography
-- Proper section headings for scannability
-- Consistent with site styling
-
----
-
-### Careers Page
-
-**Purpose:** Placeholder for future hiring / team information.
-
-**Design decisions:**
-- Simple, on-brand layout
-- Can be expanded when active roles are available
-
----
-
-### Mobile Menu
-
-**Purpose:** Navigation on smaller screens.
-
-**Design decisions:**
-- Full-screen overlay with dark background
-- Large, touch-friendly links
-- Smooth open/close animation
-- Closes on navigation or outside tap
-- Prevents body scroll when open
-
----
-
-## Key Design Decisions and Thought Process
-
-### Why brochure-style rather than over-engineered?
-
-The business doesn't need a CMS, user accounts, or complex features. A static site is faster, more secure, and easier to maintain. The content changes infrequently and can be updated directly in code.
-
-### Why subtle animations?
-
-Animations should enhance, not distract. I use:
-- Fade-in-up on scroll for section reveals
-- Smooth transitions on interactive elements
-- Gentle hover states
-
-Heavy animations would undermine the professional, executive-level audience.
-
-### Why careful handling of the purple/pink palette?
-
-The brand colours (purple #50439B and magenta #E91E7B) are strong. Overuse would feel garish. I use:
-- Purple as the dominant brand colour (headers, backgrounds, text)
-- Magenta as an accent (CTAs, active states, highlights)
-- Neutral greys to balance and provide breathing room
-
-### Why mobile refinements were important?
-
-The original site had spacing and readability issues on mobile. I refined:
-- Font sizes that scale appropriately
-- Adequate padding and margins
-- Touch-friendly tap targets (minimum 44px)
-- Readable line lengths
-
-### Why visual section differentiation?
-
-Without clear section boundaries, the page would feel monotonous. I use:
-- Alternating background colours (white, light grey, purple)
-- Consistent section padding
-- Clear heading hierarchy
-
-### Why some ideas were rejected or simplified?
-
-- **Complex CMS:** Unnecessary for this business's content workflow
-- **Heavy JavaScript frameworks:** Astro's static output is sufficient
-- **Elaborate animations:** Would distract from content
-- **Multiple page types:** Brochure-style works with a single scrolling homepage
-
-### Why mailto over third-party form services?
-
-Originally used Web3Forms for form submission, but simplified to mailto:
-- No third-party dependencies or API keys to manage
-- No environment variables required
-- User sees exactly what will be sent (transparency)
-- Works reliably across all devices and browsers
-- Simplest possible solution for a consultancy contact form
-
----
-
-## Contact Form Implementation
-
-### Why mailto?
-
-- Simplest possible solution with no dependencies
-- No API keys or third-party services to manage
-- Works reliably on all devices
-- User has full control over sending the email
-- Transparent — user sees exactly what will be sent
-
-### How it works
-
-1. User fills out form (Name, Email, optional Subject, Message)
-2. Client-side validation runs on submit
-3. If valid, a mailto: URL is generated with the form data
-4. User's default email client opens with the message pre-filled
-5. User reviews and sends the email from their own email client
-
-### Features
-
-- **Validation:** Required fields, email format, character limits
-- **Real-time feedback:** Field errors shown on blur
-- **Clear UX:** Button says "Open Email Client" with explanatory text
-
-### Destination
-
-Emails are directed to: `ckeane@niosfearr.ie`
-
----
-
-## Deployment Setup
-
-### Pipeline
-
-```
-Local Development → Git Push → GitHub → Cloudflare Pages → Live Site
-```
-
-### How it works
-
-1. Code is pushed to the `main` branch on GitHub
-2. Cloudflare Pages detects the push and triggers a build
-3. Astro builds the static site (`npm run build`)
-4. Built files are deployed to Cloudflare's edge network
-5. Site is live (typically within 1-2 minutes)
-
-### Configuration
-
-- **Build command:** `npm run build`
-- **Output directory:** `dist/`
-- **Node version:** Managed by Cloudflare (compatible with Astro 6.x)
-
-### Environment variables
-
-**No environment variables are required** for production. The contact form uses a simple mailto: solution with no external services.
-
----
-
-## Responsiveness and Testing Notes
-
-### Areas refined for mobile
-
-- Hero text sizing and spacing
-- Navigation menu behaviour and touch targets
-- Form field layout and button sizing
-- Section padding and margins
-- Testimonial card sizing
-- Client logo marquee speed
-
-### Interaction issues fixed
-
-- **Consultancy framework carousel:** Fixed race conditions between auto-advance, manual selection, and hover pause. Now transitions smoothly without erratic jumping.
-- **Mobile menu:** Closes properly on link click and outside tap.
-
----
-
-## Resources and Assets Used
-
-### Content sources
-
-- **Company brochure:** Primary source for messaging, service descriptions, and value propositions
-- **Existing website:** Reference for structure and content baseline
-- **Client conversations:** Refinements based on feedback
-
-### Visual assets
-
-- **Logo:** Provided brand assets in `/public/images/brand/`
-- **Client logos:** In `/public/images/clients/` (sourced/provided)
-- **Favicon:** Custom favicon set in `/public/images/favicon/`
-
-### External resources
-
-- **Undraw / custom SVGs:** Icon system throughout the site
-- **Google Fonts → Fontsource:** Inter and Plus Jakarta Sans (self-hosted via npm)
-
-### Important note
-
-Content and visual direction were adapted to suit the business and audience — not copied blindly from templates. The design reflects the specific positioning of Níos Fearr as a premium consultancy.
-
----
-
-## Known Limitations / Future Improvements
-
-### Current limitations
-
-- **No CMS:** Content updates require code changes (acceptable for this business)
-- **No analytics:** Would benefit from basic tracking (e.g., Plausible, Cloudflare Analytics)
-- **Limited accessibility testing:** Should complete formal accessibility audit
-- **No automated tests:** Manual testing only currently
-
-### Potential future enhancements
-
-| Enhancement | Notes |
-|-------------|-------|
-| **Analytics integration** | Plausible or Cloudflare Analytics for privacy-friendly tracking |
-| **CMS layer** | Could add Decap CMS or similar if content updates become frequent |
-| **Performance optimisation** | Image optimisation, lazy loading audit |
-| **Accessibility pass** | WCAG compliance review |
-| **Form enhancements** | Field-specific error messages, confirmation email to sender |
-| **Blog / insights section** | If thought leadership content is desired |
-| **Case studies** | Dedicated pages for client success stories |
-
----
-
-## Meeting / Handover Summary
-
-### What has been completed
-
-- Full homepage rebuild with all major sections
-- Responsive design across desktop, tablet, and mobile
-- Interactive consultancy framework with stable behaviour
-- Working contact form with mailto integration
-- Legal and Careers pages
-- Mobile navigation with proper UX
-- Deployment pipeline to Cloudflare Pages
-- Typography system with premium feel (Plus Jakarta Sans + Inter)
-
-### Key decisions made
-
-- Astro + Tailwind for maintainability and performance
-- Brochure-style (no CMS) for simplicity
-- Mailto-based contact form (no third-party dependencies)
-- Plus Jakarta Sans for premium typography
-- Purple/magenta palette used carefully for balance
-- Static hosting on Cloudflare Pages
-
-### What remains before final sign-off
-
-- Review all content for accuracy and tone
-- Test contact form mailto flow on different devices
-- Cross-browser / device testing
-- Final visual polish pass if needed
-- SEO / meta tag review
-- Accessibility spot-check
-
-### Feedback most useful now
-
-- Does the overall tone and positioning feel right?
-- Are there any content corrections needed?
-- Any sections that need more or less emphasis?
-- Is the mobile experience acceptable?
-- Any additional pages or features needed for launch?
-
----
-
-## Development Commands
+## Development
 
 ```bash
 # Install dependencies
 npm install
 
-# Start development server (http://localhost:4321)
+# Start development server
 npm run dev
 
 # Build for production
 npm run build
 
-# Preview production build locally
+# Preview production build
 npm run preview
 ```
 
----
-
-## Contact
-
-For questions about this project, refer to internal documentation or reach out directly.
+Dev server runs at `http://localhost:4321`
 
 ---
 
-*Last updated: March 2026*
+## Deployment
+
+The site deploys to **Cloudflare Pages** via two methods:
+
+### Git Integration (Recommended)
+
+Automatic deployment from GitHub:
+
+1. Push to `main` branch
+2. Cloudflare triggers build
+3. Site live within 1–2 minutes
+
+### Direct Upload (Alternative)
+
+Manual deployment from local build:
+
+1. Run `npm run build` locally
+2. Upload `dist/` folder via Cloudflare Pages dashboard
+3. Site updates immediately
+
+| Setting | Value |
+|---------|-------|
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Environment variables | None required |
+
+---
+
+## Contact Form
+
+The contact form implements a **mailto-based approach**:
+
+1. User completes the form (name, email, subject, message)
+2. Client-side validation executes
+3. On submit, the user's email client opens with pre-populated fields
+4. User sends from their own email application
+
+This approach eliminates third-party services, API keys, and backend infrastructure. A direct email link provides an alternative path.
+
+**Note:** This flow requires the visitor to have a default email client configured. Most users do, but those relying exclusively on webmail without mailto handlers can use the direct email link.
+
+---
+
+## Design
+
+| Aspect | Approach |
+|--------|----------|
+| **Palette** | Brand purple (#50439B) primary, magenta (#E91E7B) accent |
+| **Typography** | Plus Jakarta Sans headings, Inter body |
+| **Layout** | Mobile-first, responsive breakpoints |
+| **Animation** | Subtle fade-ins, smooth transitions |
+
+---
+
+## Common Updates
+
+Quick reference for routine maintenance tasks:
+
+| Update | Location |
+|--------|----------|
+| Contact email | `src/components/Contact.astro` — update `CONTACT_EMAIL` constant |
+| Client logos | Add image to `public/images/clients/`, update `src/data/clients.ts` |
+| Testimonials | `src/data/testimonials.ts` |
+| Services content | `src/data/services.ts` |
+| Process steps | `src/data/process-steps.ts` |
+| Legal page content | `src/pages/legal.astro` |
+| Careers page content | `src/pages/careers.astro` |
+| Brand assets | `public/images/brand/` |
+| Favicon | `public/images/favicon/` |
+
+---
+
+## Future Enhancements
+
+Potential improvements for consideration:
+
+- Analytics integration (Plausible or Cloudflare Analytics)
+- Blog or case studies module
+- Advanced image optimization and lazy loading
+
+---
+
+## License
+
+Private project for Níos Fearr Consulting. All rights reserved.
