@@ -6,5 +6,8 @@ dist/
 .env.*.local
 .vscode/
 
+# QA artifacts
+cypress/downloads/
+
 # Handover documentation (private)
 HANDOVER_GUIDE.md

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "http://localhost:4322/",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\-2026_04_15_16_54_04-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\-2026_04_15_16_54_04-report.json",
+    "summary": {
+      "performance": 0.78,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  },
+  {
+    "url": "http://localhost:4322/careers",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\careers-2026_04_15_16_54_53-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\careers-2026_04_15_16_54_53-report.json",
+    "summary": {
+      "performance": 0.88,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  },
+  {
+    "url": "http://localhost:4322/legal",
+    "isRepresentativeRun": false,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\legal-2026_04_15_16_55_19-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\legal-2026_04_15_16_55_19-report.json",
+    "summary": {
+      "performance": 0.83,
+      "accessibility": 0.95,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  },
+  {
+    "url": "http://localhost:4322/",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\-2026_04_15_16_54_22-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\-2026_04_15_16_54_22-report.json",
+    "summary": {
+      "performance": 0.78,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  },
+  {
+    "url": "http://localhost:4322/careers",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\careers-2026_04_15_16_54_40-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\careers-2026_04_15_16_54_40-report.json",
+    "summary": {
+      "performance": 0.88,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  },
+  {
+    "url": "http://localhost:4322/legal",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\legal-2026_04_15_16_55_06-report.html",
+    "jsonPath": "C:\\Users\\Coding\\Documents\\vscode-projects\\nios-fearr\\lighthouse-reports\\legal-2026_04_15_16_55_06-report.json",
+    "summary": {
+      "performance": 0.81,
+      "accessibility": 0.95,
+      "best-practices": 1,
+      "seo": 0.91
+    }
+  }
+]

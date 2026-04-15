@@ -7,7 +7,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:e2e:smoke": "cypress run --browser electron --spec \"cypress/e2e/homepage_content.cy.js,cypress/e2e/navigation_footer_links.cy.js,cypress/e2e/responsive_accessibility_smoke.cy.js\"",
+    "test:e2e:a11y": "cypress run --browser electron --spec \"cypress/e2e/a11y/**/*.cy.js\"",
+    "test:lighthouse": "lhci autorun --config=./lighthouse.config.cjs",
+    "test:quality": "npm run test:e2e:a11y && npm run test:lighthouse"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
@@ -16,5 +20,11 @@
     "astro": "^6.0.4",
     "swiper": "^12.1.2",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "axe-core": "^4.11.3",
+    "cypress": "^15.13.1",
+    "cypress-axe": "^1.7.0"
   }
 }

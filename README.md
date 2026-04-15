@@ -169,6 +169,182 @@ Dev server runs at `http://localhost:4321`
 
 ---
 
+## QA and Testing Case Study
+
+This chapter documents the complete test activities performed for this project, including setup, execution, findings, fixes, and re-validation evidence.
+
+### 1) Goal and Scope
+
+**Goal:** establish reliable, repeatable quality checks for core brochure-site journeys, accessibility, and baseline performance.
+
+**In scope:**
+- Public pages: `/`, `/careers`, `/legal`
+- Smoke/regression navigation and content checks
+- WCAG-focused accessibility checks (axe + practical DOM checks)
+- Lighthouse quality checks
+
+**Out of scope:**
+- Backend/API testing (site is static)
+- Full cross-browser matrix at cloud scale
+- Visual regression tooling
+
+### 2) Why Cypress for This Project
+
+Cypress was selected because it provides:
+- Fast, low-overhead E2E setup
+- Strong assertions for navigation/responsive flows
+- First-class integration with `cypress-axe`
+- Built-in video and screenshot capture for QA evidence
+- Good local debugging (`cypress open`) and CI-style execution (`cypress run`)
+
+### 3) Test Strategy
+
+Layered strategy:
+- Layer 1: smoke/regression checks for user-critical paths
+- Layer 2: accessibility checks (WCAG2A/WCAG2AA)
+- Layer 3: Lighthouse quality checks (performance/accessibility/best-practices/SEO)
+
+Execution approach:
+- Local-first validation due deployment access constraints
+- Root-cause based fixes (shared classes/tokens), not isolated element patching
+- Re-run full suite after changes with evidence capture enabled
+
+### 4) Automated Tests Added
+
+Smoke/regression:
+- `cypress/e2e/homepage_content.cy.js`
+- `cypress/e2e/navigation_footer_links.cy.js`
+- `cypress/e2e/responsive_accessibility_smoke.cy.js`
+
+Accessibility suite:
+- `cypress/e2e/a11y/public_pages.a11y.cy.js`
+
+Config and support:
+- `cypress.config.js`
+- `cypress/support/e2e.js`
+- `lighthouse.config.cjs`
+
+### 5) How to Run Test Suites
+
+```bash
+# Smoke only
+npm run test:e2e:smoke
+
+# Accessibility only
+npm run test:e2e:a11y
+
+# Lighthouse only
+npm run test:lighthouse
+
+# Combined quality gate
+npm run test:quality
+```
+
+Full local evidence run (all Cypress specs with video/screenshot capture):
+
+```bash
+CYPRESS_BASE_URL=http://localhost:4321 npx cypress run --browser electron --spec "cypress/e2e/**/*.cy.js" --config video=true,screenshotOnRunFailure=true
+```
+
+If Astro auto-switches to another port (for example 4322), update `CYPRESS_BASE_URL` and `LHCI_BASE_URL` accordingly.
+
+### 6) Accessibility Issues Found (Root-Cause Grouped)
+
+All issues were WCAG AA normal-text contrast failures (target >= 4.5:1).
+
+- Footer secondary text on dark footer: 3.8:1
+- Testimonial company text on white card: 2.84:1
+- Testimonial location text on white card: 3.02:1
+- Legal subtitle text on white: 3.69:1
+- Navbar CTA white-on-magenta: 4.25:1
+- Trust bar heading on light gray: 4.07:1
+- Careers email link on light panel: 3.94:1
+
+Key QA insight: these failures came from shared style tokens and opacity classes, so fixing source classes resolved multiple occurrences at once.
+
+### 7) Exact Fixes Applied
+
+- `src/components/Footer.astro`: `text-white/40` -> `text-white/50`
+- `src/components/Testimonials.astro`: `text-brand-body/50` -> `text-brand-body/70`
+- `src/components/Testimonials.astro`: `text-brand-magenta/70` -> `text-brand-magenta-hover`
+- `src/pages/legal.astro`: `text-brand-body/60` -> `text-brand-body/70`
+- `src/components/Navbar.astro`: `bg-brand-magenta` -> `bg-brand-magenta-hover`
+- `src/components/TrustBar.astro`: `text-brand-purple/75` -> `text-brand-purple/85`
+- `src/pages/careers.astro`: `text-brand-magenta` -> `text-brand-magenta-hover`
+
+One reliability fix in Cypress:
+- `cypress/e2e/responsive_accessibility_smoke.cy.js`: mobile CTA click forced to avoid Astro dev toolbar overlay blocking clicks in local interactive mode.
+
+### 8) Re-Test Results
+
+Full Cypress run:
+- Specs: 4
+- Tests: 16
+- Passed: 16
+- Failed: 0
+
+Per-spec:
+- `homepage_content.cy.js`: 3/3
+- `navigation_footer_links.cy.js`: 4/4
+- `responsive_accessibility_smoke.cy.js`: 3/3
+- `a11y/public_pages.a11y.cy.js`: 6/6
+
+Lighthouse run:
+- 3 URLs x 2 runs each = 6 runs
+- Reports generated successfully for all pages
+- Mobile homepage performance warning observed at 0.78 against warning target 0.80
+
+### 9) Manual vs Automated Coverage
+
+Automated now:
+- Route/content/navigation smoke
+- Responsive interaction smoke
+- Accessibility scan + structural checks
+- Lighthouse baseline
+
+Still recommended manually:
+- Final visual review on real devices
+- Mailto flow behavior across user mail client setups
+- Stakeholder content/legal sign-off
+
+### 10) QA Evidence Artifacts
+
+Generated evidence folders:
+- `cypress/videos/` (spec run recordings)
+- `cypress/screenshots/` (per-test screenshots)
+- `lighthouse-reports/` (HTML/JSON reports + manifest)
+
+### 11) Commit Policy for Testing Files vs Artifacts
+
+Commit:
+- Test specs
+- Config/support files
+- NPM scripts and QA setup code
+- Selected QA evidence artifacts intended for review
+
+Keep ignored by default (safety-sensitive or noisy runtime outputs):
+- `cypress/downloads/`
+
+For this project, screenshots/videos/reports are intentionally trackable to support walkthroughs.
+
+### 12) Lessons Learned and Best Practices
+
+- Layered automation gives strong confidence quickly on static sites.
+- Accessibility tooling is most effective with root-cause analysis.
+- Small token-level color changes can clear WCAG AA without redesign.
+- Local-first QA keeps delivery moving when deployment access is restricted.
+- Evidence (video/screenshots/reports) improves traceability and stakeholder confidence.
+
+### 13) Testing Outcomes
+
+- Designed and implemented a complete QA stack (Cypress + cypress-axe + Lighthouse).
+- Defined layered coverage: smoke, accessibility, performance-quality baseline.
+- Diagnosed accessibility regressions by shared styling root causes.
+- Applied minimal, brand-consistent fixes and re-validated with full evidence.
+- Balanced automation with clear manual validation boundaries.
+
+---
+
 ## Deployment
 
 The site deploys to **Cloudflare Pages** via two methods:
